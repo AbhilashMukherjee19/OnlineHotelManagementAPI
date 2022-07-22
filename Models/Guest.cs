@@ -9,6 +9,7 @@ namespace OnlineHotelManagementAPI.Models
         [DataType("int")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int GuestId { get; set; }
+        //Guest//
 
         [Required(ErrorMessage = "Name cannot be empty")]
         [DataType("varchar(25)")]
