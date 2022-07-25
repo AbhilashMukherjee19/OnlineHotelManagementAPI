@@ -12,7 +12,7 @@ using OnlineHotelManagementAPI.Models;
 namespace OnlineHotelManagementAPI.Migrations
 {
     [DbContext(typeof(HotelContext))]
-    [Migration("20220722155338_InitialMig1")]
+    [Migration("20220725060217_InitialMig1")]
     partial class InitialMig1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,6 +23,22 @@ namespace OnlineHotelManagementAPI.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("OnlineHotelManagementAPI.Models.Admin", b =>
+                {
+                    b.Property<string>("AdminName")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("AdminName");
+
+                    b.ToTable("Admins");
+                });
 
             modelBuilder.Entity("OnlineHotelManagementAPI.Models.Guest", b =>
                 {

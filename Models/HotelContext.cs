@@ -15,5 +15,6 @@ namespace OnlineHotelManagementAPI.Models
         public DbSet<Room> Rooms { get; set; }
         public DbSet<Rate> Rates { get; set; }
         public DbSet<Payment> Payments { get; set; }
+        public DbSet<Admin> Admins { get; set; }
     }
 }

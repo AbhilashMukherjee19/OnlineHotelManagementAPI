@@ -22,6 +22,22 @@ namespace OnlineHotelManagementAPI.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("OnlineHotelManagementAPI.Models.Admin", b =>
+                {
+                    b.Property<string>("AdminName")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("AdminName");
+
+                    b.ToTable("Admins");
+                });
+
             modelBuilder.Entity("OnlineHotelManagementAPI.Models.Guest", b =>
                 {
                     b.Property<int>("GuestId")
