@@ -12,8 +12,15 @@ namespace OnlineHotelManagementAPI.Repositories
         }
         public List<Payment> GetAllPayment()
         {
-            List<Payment> payment = _context.Payments.ToList();
-            return payment;
+            try
+            {
+                List<Payment> payment = _context.Payments.ToList();
+                return payment;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public string InsertPayment(Payment payment)

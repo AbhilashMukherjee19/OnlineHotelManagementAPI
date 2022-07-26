@@ -38,6 +38,9 @@ builder.Services.AddTransient<ReservationService, ReservationService>();
 builder.Services.AddTransient<IPayment, PaymentRepo>();
 builder.Services.AddTransient<PaymentService, PaymentService>();
 
+builder.Services.AddTransient<IAdmin, AdminRepo>();
+builder.Services.AddTransient<AdminService, AdminService>();
+
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

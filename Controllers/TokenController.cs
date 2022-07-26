@@ -39,6 +39,7 @@ namespace OnlineHotelManagementAPI.Controllers
             admin.Username = request.Username;
             admin.PasswordHash = passwordHash;
             admin.PasswordSalt = passwordSalt;
+            admin.Role = request.Role;
 
             return Ok(admin);
         }
@@ -116,7 +117,7 @@ namespace OnlineHotelManagementAPI.Controllers
             List<Claim> claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Name, admin.Username),
-                new Claim(ClaimTypes.Role, "Admin")
+                new Claim(ClaimTypes.Role, admin.Role)
             };
 
             var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(

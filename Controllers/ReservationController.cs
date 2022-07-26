@@ -6,7 +6,7 @@ using OnlineHotelManagementAPI.Service;
 
 namespace OnlineHotelManagementAPI.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Receptionist")]
     [Route("api/[controller]")]
     [ApiController]
     public class ReservationController : ControllerBase

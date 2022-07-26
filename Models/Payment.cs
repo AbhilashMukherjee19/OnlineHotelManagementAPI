@@ -27,7 +27,7 @@ namespace OnlineHotelManagementAPI.Models
         [MinLength(16, ErrorMessage = "Please enter the card number")]
         [Required(ErrorMessage = "Please enter a valid Card Number")]
         [Display(Name = "Card Number")]
-        public string CardNumber { get; set; }
+        public long CardNumber { get; set; }
 
 
 
