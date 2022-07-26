@@ -6,7 +6,6 @@ using OnlineHotelManagementAPI.Service;
 
 namespace OnlineHotelManagementAPI.Controllers
 {
-    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class PaymentController : ControllerBase
@@ -18,20 +17,19 @@ namespace OnlineHotelManagementAPI.Controllers
             S_payment = payment;
         }
 
-        [HttpPost("InsertPayment")]
+        [HttpPost("InsertPayment"), Authorize(Roles = "Manager")]
         public IActionResult InsertStaff(Payment payment)
         {
             return Ok(S_payment.InsertPayment(payment));
         }
 
-        [HttpPut("UpdatePayment")]
+        [HttpPut("UpdatePayment"), Authorize(Roles = "Manager")]
         public IActionResult UpdatePayment(Payment payment)
         {
             return Ok(S_payment.UpdatePayment(payment));
         }
 
-        [HttpGet("GetAllPayment")]
-
+        [HttpGet("GetAllPayment"), Authorize(Roles = "Manager")]
         public IActionResult GetAllPayment()
         {
             return Ok(S_payment.GetAllPayment());

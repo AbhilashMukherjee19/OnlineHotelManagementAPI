@@ -63,6 +63,11 @@ namespace OnlineHotelManagementAPI.Controllers
                 return BadRequest("Wrong password.");
             }
 
+            admin1 = _hotelContext.Admins.Find(request.Role);
+            if (admin1 == null)
+            {
+                return BadRequest("Role forbidden.");
+            }
             string token = CreateToken(admin1);
 
             //var refreshToken = GenerateRefreshToken();

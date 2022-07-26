@@ -6,7 +6,6 @@ using OnlineHotelManagementAPI.Service;
 
 namespace OnlineHotelManagementAPI.Controllers
 {
-    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class RoomController : ControllerBase
@@ -16,27 +15,32 @@ namespace OnlineHotelManagementAPI.Controllers
         {
             _room = room;
         }
-        [HttpGet]
+
+        [HttpGet, Authorize(Roles = "Receptionist")]
         public IActionResult GetAllRooms()
         {
             return Ok(_room.GetAll());
         }
-        [HttpGet("ById")]
+
+        [HttpGet("ById"), Authorize(Roles = "Receptionist")]
         public IActionResult GetRoomById(int id)
         {
             return Ok(_room.GetById(id));
         }
-        [HttpPost]
+
+        [HttpPost, Authorize(Roles = "Manager")]
         public IActionResult AddRoom(Room room)
         {
             return Ok(_room.AddRoom(room));
         }
-        [HttpPut]
+
+        [HttpPut, Authorize(Roles = "Manager")]
         public IActionResult UpdateRoom(Room room)
         {
             return Ok(_room.UpdateRoom(room));
         }
-        [HttpDelete("ById")]
+
+        [HttpDelete("ById"), Authorize(Roles = "Manager")]
         public IActionResult RemoveRoom(int id)
         {
             return Ok(_room.RemoveRoom(id));

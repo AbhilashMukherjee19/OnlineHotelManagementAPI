@@ -6,7 +6,6 @@ using OnlineHotelManagementAPI.Service;
 
 namespace OnlineHotelManagementAPI.Controllers
 {
-    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class StaffsController : ControllerBase
@@ -17,25 +16,26 @@ namespace OnlineHotelManagementAPI.Controllers
         {
             S_staff = staff;
         }
-        [HttpPost("InsertStaff")]
+
+        [HttpPost("InsertStaff"), Authorize(Roles = "Owner")]
         public IActionResult InsertStaff(Staff staff)
         {
             return Ok(S_staff.InsertStaff(staff));
         }
 
-        [HttpDelete("DeleteStaff")]
+        [HttpDelete("DeleteStaff"), Authorize(Roles = "Owner")]
         public IActionResult DeleteStaff(int Id)
         {
             return Ok(S_staff.DeleteStaff(Id));
         }
 
-        [HttpPut("UpdateStaff")]
+        [HttpPut("UpdateStaff"), Authorize(Roles = "Owner")]
         public IActionResult UpdateStaff(Staff customer)
         {
             return Ok(S_staff.UpdateStaff(customer));
         }
 
-        [HttpGet("GetStaffById")]
+        [HttpGet("GetStaffById"), Authorize(Roles = "Owner")]
 
         public IActionResult GetStaffById(int Id)
         {
