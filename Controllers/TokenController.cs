@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using OnlineHotelManagementAPI.Models;
+using OnlineHotelManagementAPI.Service;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
@@ -17,11 +18,15 @@ namespace OnlineHotelManagementAPI.Controllers
     {
         public static Admin admin = new Admin();
         private readonly IConfiguration _configuration;
-        //private readonly IUserService _userService;
+        private AdminService _adminService;
+        private HotelContext _hotelContext;
 
-        public TokenController(IConfiguration configuration)
+        public TokenController(IConfiguration configuration, AdminService adminservice,
+            HotelContext hotelContext)
         {
             _configuration = configuration;
+            _adminService = adminservice;
+            _hotelContext = hotelContext;
         }
 
         //[HttpGet, Authorize]
@@ -41,23 +46,24 @@ namespace OnlineHotelManagementAPI.Controllers
             admin.PasswordSalt = passwordSalt;
             admin.Role = request.Role;
 
-            return Ok(admin);
+            return Ok(_adminService.AddAdmin(admin));
         }
 
         [HttpPost("login")]
         public async Task<ActionResult<string>> Login(Login request)
         {
-            if (admin.Username != request.Username)
+            Admin? admin1 = _hotelContext.Admins.Find(request.Username);
+            if (admin1 == null)
             {
                 return BadRequest("User not found.");
             }
 
-            if (!VerifyPasswordHash(request.Password, admin.PasswordHash, admin.PasswordSalt))
+            if (!VerifyPasswordHash(request.Password, admin1.PasswordHash, admin1.PasswordSalt))
             {
                 return BadRequest("Wrong password.");
             }
 
-            string token = CreateToken(admin);
+            string token = CreateToken(admin1);
 
             //var refreshToken = GenerateRefreshToken();
             //SetRefreshToken(refreshToken);

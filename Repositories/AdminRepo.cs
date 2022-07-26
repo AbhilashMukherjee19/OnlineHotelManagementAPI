@@ -18,12 +18,14 @@ namespace OnlineHotelManagementAPI.Repositories
                 _dbContext.Admins.Add(admin);
                 _dbContext.SaveChanges();
                 stcode = "200";
+                return stcode;
             }
-            catch
+            catch (Exception ex)
             {
                 stcode = "400";
+                throw ex;
             }
-            return stcode;
+            //return stcode;
         }
         #endregion
     }
