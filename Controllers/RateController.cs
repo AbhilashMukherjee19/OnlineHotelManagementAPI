@@ -17,19 +17,19 @@ namespace OnlineHotelManagementAPI.Controllers
             S_rate = rate;
         }
 
-        [HttpPost("InsertRate"), Authorize(Roles = "Manager")]
+        [HttpPost("InsertRate"), Authorize(Roles = "Receptionist, Manager, Owner")]
         public IActionResult InsertRate(Rate rate)
         {
             return Ok(S_rate.InsertRate(rate));
         }
 
-        [HttpPut("UpdateRate"), Authorize(Roles = "Manager")]
+        [HttpPut("UpdateRate"), Authorize(Roles = "Receptionist, Manager, Owner")]
         public IActionResult UpdateRate(Rate rate)
         {
             return Ok(S_rate.UpdateRate(rate));
         }
 
-        [HttpGet("GetAllRate"), Authorize(Roles = "Manager")]
+        [HttpGet("GetAllRate"), Authorize(Roles = "Receptionist, Manager, Owner")]
         public IActionResult GetAllRate()
         {
             return Ok(S_rate.GetAllRate());

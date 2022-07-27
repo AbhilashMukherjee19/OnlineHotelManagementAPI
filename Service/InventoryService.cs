@@ -22,7 +22,7 @@ namespace OnlineHotelManagementAPI.Service
             return _IInventory.GetAllInventories();
         }
 
-        public Inventory GetInventoryById(int Id)
+        public string GetInventoryById(int Id)
         {
             return _IInventory.GetInventoryById(Id);
         }

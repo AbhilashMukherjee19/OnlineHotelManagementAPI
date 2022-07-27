@@ -15,7 +15,7 @@ namespace OnlineHotelManagementAPI.Service
         {
             return _room.GetAll();
         }
-        public Room GetById(int id)
+        public string GetById(int id)
         {
             return _room.GetById(id);
         }

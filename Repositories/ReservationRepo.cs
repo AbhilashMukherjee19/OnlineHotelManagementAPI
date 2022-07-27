@@ -11,16 +11,28 @@ namespace OnlineHotelManagementAPI.Repositories
             _context = context;
         }
 
-        public string DeleteReservation(int reservation)
+        public string DeleteReservation(int id)
         {
-            string msg = "";
-            Reservation deleteReservation = _context.Reservations.Find(reservation);
+            string stcode = string.Empty;
+            try
             {
-                _context.Reservations.Remove(deleteReservation);
-                _context.SaveChanges();
-                msg = "Deleted";
+                var reservation = _context.Reservations.Find(id);
+                if (reservation != null)
+                {
+                    _context.Reservations.Remove(reservation);
+                    _context.SaveChanges();
+                    stcode = "200";
+                }
+                else
+                {
+                    stcode = "400";
+                }
             }
-            return msg;
+            catch
+            {
+                stcode = "400";
+            }
+            return stcode;
         }
 
         public List<Reservation> GetAllReservation()
@@ -29,24 +41,29 @@ namespace OnlineHotelManagementAPI.Repositories
             return reservation;
         }
 
-        public Reservation GetReservationById(int Id)
+        public string GetReservationById(int Id)
         {
             Reservation reservation;
             string stcode = string.Empty;
             try
             {
-
-
                 reservation = _context.Reservations.Find(Id);
-                _context.SaveChanges();
-                stcode = "200";
-                return reservation;
+                if (reservation != null)
+                {
+                    _context.SaveChanges();
+                    stcode = "200";
+                }
+                else
+                {
+                    stcode = "400";
+                }
+
             }
             catch (Exception e)
             {
-                throw e;
-                stcode = "400";
+                stcode = e.Message;
             }
+            return stcode;
 
         }
 

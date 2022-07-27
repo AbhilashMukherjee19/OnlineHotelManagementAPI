@@ -17,19 +17,19 @@ namespace OnlineHotelManagementAPI.Controllers
             S_payment = payment;
         }
 
-        [HttpPost("InsertPayment"), Authorize(Roles = "Manager")]
+        [HttpPost("InsertPayment"), Authorize(Roles = "Receptionist, Manager, Owner")]
         public IActionResult InsertStaff(Payment payment)
         {
             return Ok(S_payment.InsertPayment(payment));
         }
 
-        [HttpPut("UpdatePayment"), Authorize(Roles = "Manager")]
+        [HttpPut("UpdatePayment"), Authorize(Roles = "Receptionist, Manager, Owner")]
         public IActionResult UpdatePayment(Payment payment)
         {
             return Ok(S_payment.UpdatePayment(payment));
         }
 
-        [HttpGet("GetAllPayment"), Authorize(Roles = "Manager")]
+        [HttpGet("GetAllPayment"), Authorize(Roles = "Receptionist, Manager, Owner")]
         public IActionResult GetAllPayment()
         {
             return Ok(S_payment.GetAllPayment());

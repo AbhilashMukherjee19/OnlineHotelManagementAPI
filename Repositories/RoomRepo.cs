@@ -25,24 +25,29 @@ namespace OnlineHotelManagementAPI.Repositories
         #endregion
 
         #region GetRoomById
-        public Room GetById(int id)
+        public string GetById(int id)
         {
+            string stcode = string.Empty;
             try
             {
                 Room? room = _dbContext.Rooms.Find(id);
+
                 if (room != null)
                 {
-                    return room;
+
+                    _dbContext.SaveChanges();
+                    stcode = "200";
                 }
                 else
                 {
-                    throw new ArgumentNullException();
+                    stcode = "400";
                 }
             }
-            catch
+            catch (Exception e)
             {
-                throw;
+                stcode = e.Message;
             }
+            return stcode;
         }
         #endregion
 

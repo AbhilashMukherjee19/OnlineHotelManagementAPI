@@ -16,31 +16,31 @@ namespace OnlineHotelManagementAPI.Controllers
             _room = room;
         }
 
-        [HttpGet, Authorize(Roles = "Receptionist")]
+        [HttpGet, Authorize(Roles = "Receptionist, Manager, Owner")]
         public IActionResult GetAllRooms()
         {
             return Ok(_room.GetAll());
         }
 
-        [HttpGet("ById"), Authorize(Roles = "Receptionist")]
+        [HttpGet("ById"), Authorize(Roles = "Receptionist, Manager, Owner")]
         public IActionResult GetRoomById(int id)
         {
             return Ok(_room.GetById(id));
         }
 
-        [HttpPost, Authorize(Roles = "Manager")]
+        [HttpPost, Authorize(Roles = "Manager, Owner")]
         public IActionResult AddRoom(Room room)
         {
             return Ok(_room.AddRoom(room));
         }
 
-        [HttpPut, Authorize(Roles = "Manager")]
+        [HttpPut, Authorize(Roles = "Manager, Owner")]
         public IActionResult UpdateRoom(Room room)
         {
             return Ok(_room.UpdateRoom(room));
         }
 
-        [HttpDelete("ById"), Authorize(Roles = "Manager")]
+        [HttpDelete("ById"), Authorize(Roles = "Manager, Owner")]
         public IActionResult RemoveRoom(int id)
         {
             return Ok(_room.RemoveRoom(id));

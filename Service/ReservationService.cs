@@ -22,7 +22,7 @@ namespace OnlineHotelManagementAPI.Service
             return _IReservation.GetAllReservation();
         }
 
-        public Reservation GetReservationById(int Id)
+        public string GetReservationById(int Id)
         {
             return _IReservation.GetReservationById(Id);
         }

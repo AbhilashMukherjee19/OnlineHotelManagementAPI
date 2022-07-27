@@ -17,25 +17,31 @@ namespace OnlineHotelManagementAPI.Controllers
             S_reservation = reservation;
         }
 
-        [HttpPost("InsertReservation"), Authorize(Roles = "Receptionist")]
+        [HttpGet, Authorize(Roles = "Manager, Receptionist, Owner")]
+        public IActionResult GetAllReservation()
+        {
+            return Ok(S_reservation.GetAllReservation());
+        }
+
+        [HttpPost("InsertReservation"), Authorize(Roles = "Receptionist, Manager, Owner")]
         public IActionResult InsertReservation(Reservation reservation)
         {
             return Ok(S_reservation.InsertReservation(reservation));
         }
 
-        [HttpDelete("DeleteReservation"), Authorize(Roles = "Receptionist")]
+        [HttpDelete("DeleteReservation"), Authorize(Roles = "Receptionist, Manager, Owner")]
         public IActionResult DeleteReservation(int Id)
         {
             return Ok(S_reservation.DeleteReservation(Id));
         }
 
-        [HttpPut("UpdateReservation"), Authorize(Roles = "Receptionist")]
+        [HttpPut("UpdateReservation"), Authorize(Roles = "Receptionist, Manager, Owner")]
         public IActionResult UpdateReservation(Reservation reservation)
         {
             return Ok(S_reservation.UpdateReservation(reservation));
         }
 
-        [HttpGet("GetReservationById"), Authorize(Roles = "Manager")]
+        [HttpGet("GetReservationById"), Authorize(Roles = "Receptionist, Manager, Owner")]
 
         public IActionResult GetReservationById(int Id)
         {

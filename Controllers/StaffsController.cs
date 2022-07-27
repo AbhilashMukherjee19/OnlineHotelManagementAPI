@@ -17,6 +17,12 @@ namespace OnlineHotelManagementAPI.Controllers
             S_staff = staff;
         }
 
+        [HttpGet("GetAllStaff"), Authorize(Roles = "Owner")]
+        public IActionResult GetAllStaff()
+        {
+            return Ok(S_staff.GetAllStaff());
+        }
+
         [HttpPost("InsertStaff"), Authorize(Roles = "Owner")]
         public IActionResult InsertStaff(Staff staff)
         {

@@ -24,7 +24,7 @@ namespace OnlineHotelManagementAPI.Service
             return _IStaff.GetAllStaff();
         }
 
-        public Staff GetStaffById(int Id)
+        public string GetStaffById(int Id)
         {
             return _IStaff.GetStaffById(Id);
         }

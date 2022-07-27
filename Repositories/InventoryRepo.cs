@@ -11,16 +11,28 @@ namespace OnlineHotelManagementAPI.Repositories
             _context = context;
         }
 
-        public string DeleteInventory(int inventory)
+        public string DeleteInventory(int id)
         {
-            string msg = "";
-                Inventory deleteInventory = _context.Inventoriess.Find(inventory);
+            string stcode = string.Empty;
+            try
+            {
+                var inventory = _context.Inventoriess.Find(id);
+                if (inventory != null)
                 {
-                    _context.Inventoriess.Remove(deleteInventory);
+                    _context.Inventoriess.Remove(inventory);
                     _context.SaveChanges();
-                    msg = "Deleted";
+                    stcode = "200";
                 }
-                return msg;
+                else
+                {
+                    stcode = "400";
+                }
+            }
+            catch
+            {
+                stcode = "400";
+            }
+            return stcode;
         }
 
         public List<Inventory> GetAllInventories()
@@ -29,24 +41,29 @@ namespace OnlineHotelManagementAPI.Repositories
             return inventory;
         }
 
-        public Inventory GetInventoryById(int Id)
+        public string GetInventoryById(int Id)
         {
-            Inventory inventory;
             string stcode = string.Empty;
             try
             {
-                _context.Inventoriess.Where(x => Id == Id).FirstOrDefault();
+                Inventory? inv = _context.Inventoriess.Find(Id);
+                if (inv != null)
+                {
 
-                inventory = _context.Inventoriess.Find(Id);
-                _context.SaveChanges();
-                stcode = "200";
+                    _context.SaveChanges();
+                    stcode = "200";
+                }
+                else
+                {
+                    stcode = "400";
+                }
             }
             catch (Exception e)
             {
-                throw e;
-                stcode = "400";
+
+                stcode = e.Message;
             }
-            return inventory;
+            return stcode;
         }
 
         public string InsertInventory(Inventory inventory)

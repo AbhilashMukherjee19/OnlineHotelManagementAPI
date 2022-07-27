@@ -17,19 +17,26 @@ namespace OnlineHotelManagementAPI.Repositories
 
         public string DeleteStaff(int Id)
         {
-            string msg = "";
-            Staff deleteStaff = _context.Staffs.Find(Id);
-            if(deleteStaff != null)
-            { 
-                _context.Staffs.Remove(deleteStaff);
-                _context.SaveChanges();
-                msg = "Deleted";
-            }
-            else
+            string stcode = string.Empty;
+            try
             {
-                msg = "Id not valid";
+                var staff = _context.Staffs.Find(Id);
+                if (staff != null)
+                {
+                    _context.Staffs.Remove(staff);
+                    _context.SaveChanges();
+                    stcode = "200";
+                }
+                else
+                {
+                    stcode = "400";
+                }
             }
-            return msg;
+            catch
+            {
+                stcode = "400";
+            }
+            return stcode;
         }
 
         public List<Staff> GetAllStaff()
@@ -38,21 +45,28 @@ namespace OnlineHotelManagementAPI.Repositories
             return staff;
         }
 
-        public Staff GetStaffById(int id)
+        public string GetStaffById(int id)
         {
             string stcode = string.Empty;
             try
             {
                 Staff staff = _context.Staffs.Find(id);
-                _context.SaveChanges();
-                stcode = "200";
-                return staff;
+                if (staff != null)
+                {
+                    _context.SaveChanges();
+                    stcode = "200";
+                }
+                else
+                {
+                    stcode = "400";
+                }
+
             }
             catch (Exception e)
             {
-                throw e;
-                stcode = "400";
+                stcode = e.Message;
             }
+            return stcode;
         }
 
         public string InsertStaff(Staff staff)

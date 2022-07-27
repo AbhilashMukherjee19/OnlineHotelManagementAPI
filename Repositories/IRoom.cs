@@ -5,7 +5,7 @@ namespace OnlineHotelManagementAPI.Repositories
     public interface IRoom
     {
         public List<Room> GetAll();
-        public Room GetById(int id);
+        public string GetById(int id);
         public string AddRoom(Room room);
         public string UpdateRoom(Room room);
         public string RemoveRoom(int id);
