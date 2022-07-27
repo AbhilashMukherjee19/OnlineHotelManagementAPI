@@ -17,22 +17,11 @@ namespace OnlineHotelManagementAPI.Controllers
             S_inventory = inventory;
         }
 
-        [HttpGet, Authorize(Roles = "Manager, Owner")]
-        public IActionResult GetAllInventories()
-        {
-            return Ok(S_inventory.GetAllInventories());
-        }
 
         [HttpPost("InsertInventory"), Authorize(Roles = "Manager, Owner")]
         public IActionResult InsertInventory(Inventory inventory)
         {
             return Ok(S_inventory.InsertInventory(inventory));
-        }
-
-        [HttpDelete("DeleteInventory"), Authorize(Roles = "Manager, Owner")]
-        public IActionResult DeleteInventory(int Id)
-        {
-            return Ok(S_inventory.DeleteInventory(Id));
         }
 
         [HttpPut("UpdateInventory"), Authorize(Roles = "Manager, Owner")]
@@ -41,10 +30,22 @@ namespace OnlineHotelManagementAPI.Controllers
             return Ok(S_inventory.UpdateInventory(inventory));
         }
 
+        [HttpDelete("DeleteInventory"), Authorize(Roles = "Manager, Owner")]
+        public IActionResult DeleteInventory(int Id)
+        {
+            return Ok(S_inventory.DeleteInventory(Id));
+        }
+
         [HttpGet("GetInventoryById"), Authorize(Roles = "Manager, Owner")]
         public IActionResult GetInventoryById(int Id)
         {
             return Ok(S_inventory.GetInventoryById(Id));
+        }
+
+        [HttpGet("GetAllInventories"), Authorize(Roles = "Manager, Owner")]
+        public IActionResult GetAllInventories()
+        {
+            return Ok(S_inventory.GetAllInventories());
         }
     }
 }

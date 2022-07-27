@@ -17,6 +17,7 @@ namespace OnlineHotelManagementAPI.Controllers
             S_payment = payment;
         }
 
+
         [HttpPost("InsertPayment"), Authorize(Roles = "Receptionist, Manager, Owner")]
         public IActionResult InsertStaff(Payment payment)
         {

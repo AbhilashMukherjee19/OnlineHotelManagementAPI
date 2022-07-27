@@ -11,6 +11,7 @@ namespace OnlineHotelManagementAPI.Repositories
             _context = context;
         }
 
+        #region DeleteInventory 
         public string DeleteInventory(int id)
         {
             string stcode = string.Empty;
@@ -34,13 +35,24 @@ namespace OnlineHotelManagementAPI.Repositories
             }
             return stcode;
         }
+        #endregion
 
+        #region GetAllInventories
         public List<Inventory> GetAllInventories()
         {
-            List<Inventory> inventory = _context.Inventoriess.ToList();
-            return inventory;
+            try
+            {
+                List<Inventory> inventory = _context.Inventoriess.ToList();
+                return inventory;
+            }
+            catch
+            {
+                throw;
+            }
         }
+        #endregion
 
+        #region GetInventoryById
         public string GetInventoryById(int Id)
         {
             string stcode = string.Empty;
@@ -65,7 +77,9 @@ namespace OnlineHotelManagementAPI.Repositories
             }
             return stcode;
         }
+        #endregion
 
+        #region InsertInventory
         public string InsertInventory(Inventory inventory)
         {
             string stcode = string.Empty;
@@ -82,12 +96,16 @@ namespace OnlineHotelManagementAPI.Repositories
             }
             return stcode;
         }
+        #endregion
 
+        #region SaveInventory 
         public void SaveInventory(Inventory inventory)
         {
             _context.SaveChanges();
         }
+        #endregion
 
+        #region UpdateInventory
         public string UpdateInventory(Inventory inventory)
         {
             string stcode = string.Empty;
@@ -104,5 +122,6 @@ namespace OnlineHotelManagementAPI.Repositories
             }
             return stcode;
         }
+        #endregion
     }
 }

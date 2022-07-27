@@ -10,6 +10,8 @@ namespace OnlineHotelManagementAPI.Repositories
         {
             _context = context;
         }
+
+        #region GetAllPayment
         public List<Payment> GetAllPayment()
         {
             try
@@ -22,7 +24,9 @@ namespace OnlineHotelManagementAPI.Repositories
                 throw ex;
             }
         }
+        #endregion
 
+        #region InsertPayment
         public string InsertPayment(Payment payment)
         {
             string stcode = string.Empty;
@@ -39,12 +43,16 @@ namespace OnlineHotelManagementAPI.Repositories
             }
             return stcode;
         }
+        #endregion
 
+        #region SavePayment
         public void SavePayment(Payment payment)
         {
             _context.SaveChanges();
         }
+        #endregion
 
+        #region UpdatePayment
         public string UpdatePayment(Payment payment)
         {
             string stcode = string.Empty;
@@ -61,5 +69,6 @@ namespace OnlineHotelManagementAPI.Repositories
             }
             return stcode;
         }
+        #endregion
     }
 }

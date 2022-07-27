@@ -11,10 +11,7 @@ namespace OnlineHotelManagementAPI.Repositories
             _context = context;
         }
 
-        //public int id { get; private set; }
-        //public int Id { get; private set; }
-        //public object StaffId { get; private set; }
-
+        #region DeleteStaff
         public string DeleteStaff(int Id)
         {
             string stcode = string.Empty;
@@ -38,13 +35,24 @@ namespace OnlineHotelManagementAPI.Repositories
             }
             return stcode;
         }
+        #endregion
 
+        #region GetAllStaff
         public List<Staff> GetAllStaff()
         {
-            List<Staff> staff = _context.Staffs.ToList();
-            return staff;
+            try
+            {
+                List<Staff> staff = _context.Staffs.ToList();
+                return staff;
+            }
+            catch
+            {
+                throw;
+            }
         }
+        #endregion
 
+        #region GetStaffById
         public string GetStaffById(int id)
         {
             string stcode = string.Empty;
@@ -68,7 +76,9 @@ namespace OnlineHotelManagementAPI.Repositories
             }
             return stcode;
         }
+        #endregion
 
+        #region InsertStaff
         public string InsertStaff(Staff staff)
         {
             string stcode = string.Empty;
@@ -86,12 +96,16 @@ namespace OnlineHotelManagementAPI.Repositories
             return stcode;
 
         }
+        #endregion
 
+        #region SaveStaff
         public void SaveStaff(Staff staff)
         {
             _context.SaveChanges();
         }
+        #endregion
 
+        #region UpdateStaff
         public string UpdateStaff(Staff staff)
         {
             string stcode = string.Empty;
@@ -108,5 +122,6 @@ namespace OnlineHotelManagementAPI.Repositories
             }
             return stcode;
         }
+        #endregion
     }
 }

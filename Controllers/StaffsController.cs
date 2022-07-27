@@ -17,22 +17,11 @@ namespace OnlineHotelManagementAPI.Controllers
             S_staff = staff;
         }
 
-        [HttpGet("GetAllStaff"), Authorize(Roles = "Owner")]
-        public IActionResult GetAllStaff()
-        {
-            return Ok(S_staff.GetAllStaff());
-        }
-
+        
         [HttpPost("InsertStaff"), Authorize(Roles = "Owner")]
         public IActionResult InsertStaff(Staff staff)
         {
             return Ok(S_staff.InsertStaff(staff));
-        }
-
-        [HttpDelete("DeleteStaff"), Authorize(Roles = "Owner")]
-        public IActionResult DeleteStaff(int Id)
-        {
-            return Ok(S_staff.DeleteStaff(Id));
         }
 
         [HttpPut("UpdateStaff"), Authorize(Roles = "Owner")]
@@ -41,11 +30,23 @@ namespace OnlineHotelManagementAPI.Controllers
             return Ok(S_staff.UpdateStaff(customer));
         }
 
+        [HttpDelete("DeleteStaff"), Authorize(Roles = "Owner")]
+        public IActionResult DeleteStaff(int Id)
+        {
+            return Ok(S_staff.DeleteStaff(Id));
+        }
+
         [HttpGet("GetStaffById"), Authorize(Roles = "Owner")]
 
         public IActionResult GetStaffById(int Id)
         {
             return Ok(S_staff.GetStaffById(Id));
+        }
+
+        [HttpGet("GetAllStaff"), Authorize(Roles = "Owner")]
+        public IActionResult GetAllStaff()
+        {
+            return Ok(S_staff.GetAllStaff());
         }
     }
 }

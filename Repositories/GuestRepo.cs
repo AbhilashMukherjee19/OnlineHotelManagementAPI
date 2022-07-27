@@ -10,6 +10,7 @@ namespace OnlineHotelManagementAPI.Repositories
         {
             _dbContext = context;
         }
+
         #region GetAllGuests
         public List<Guest> GetAll()
         {

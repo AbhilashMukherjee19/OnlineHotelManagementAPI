@@ -15,35 +15,36 @@ namespace OnlineHotelManagementAPI.Controllers
         {
             _guest = guest;
         }
-        [HttpGet,Authorize(Roles = "Manager, Receptionist, Owner")]
-        public IActionResult GetAllGuests()
-        {
-            return Ok(_guest.GetAll());
-        }
 
-        [HttpGet("ById"),Authorize(Roles = "Manager, Receptionist, Owner")]
-        public IActionResult GetGuestById(int id)
-        {
-            return Ok(_guest.GetById(id));
-        }
 
-        [HttpPost, Authorize(Roles = "Manager, Receptionist, Owner")]
+        [HttpPost("InsertGuest"), Authorize(Roles = "Manager, Receptionist, Owner")]
         public IActionResult AddGuest(Guest guest)
         {
             return Ok(_guest.AddGuest(guest));
         }
 
-        [HttpPut, Authorize(Roles = "Manager, Receptionist, Owner")]
+        [HttpPut("UpdateGuest"), Authorize(Roles = "Manager, Receptionist, Owner")]
         public IActionResult UpdateGuest(Guest guest)
         {
             return Ok(_guest.UpdateGuest(guest));
         }
 
-        [HttpDelete("ById"), Authorize(Roles = "Manager, Receptionist, Owner")]
+        [HttpDelete("DeleteGuest"), Authorize(Roles = "Manager, Receptionist, Owner")]
         public IActionResult RemoveGuest(int id)
         {
             return Ok(_guest.RemoveGuest(id));
         }
 
+        [HttpGet("GetGuestById"), Authorize(Roles = "Manager, Receptionist, Owner")]
+        public IActionResult GetGuestById(int id)
+        {
+            return Ok(_guest.GetById(id));
+        }
+
+        [HttpGet("GetAllGuests"), Authorize(Roles = "Manager, Receptionist, Owner")]
+        public IActionResult GetAllGuests()
+        {
+            return Ok(_guest.GetAll());
+        }
     }
 }

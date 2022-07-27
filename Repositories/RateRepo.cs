@@ -11,12 +11,22 @@ namespace OnlineHotelManagementAPI.Repositories
             _context = context;
         }
 
+        #region GetAllRate
         public List<Rate> GetAllRate()
         {
-            List<Rate> rate = _context.Rates.ToList();
-            return rate;
+            try
+            {
+                List<Rate> rate = _context.Rates.ToList();
+                return rate;
+            }
+            catch
+            {
+                throw;
+            }
         }
+        #endregion
 
+        #region InsertRate
         public string InsertRate(Rate rate)
         {
             string stcode = string.Empty;
@@ -33,7 +43,9 @@ namespace OnlineHotelManagementAPI.Repositories
             }
             return stcode;
         }
+        #endregion
 
+        #region UpdateRate
         public string UpdateRate(Rate rate)
         {
             string stcode = string.Empty;
@@ -50,5 +62,6 @@ namespace OnlineHotelManagementAPI.Repositories
             }
             return stcode;
         }
+        #endregion
     }
 }

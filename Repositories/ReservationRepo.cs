@@ -11,6 +11,7 @@ namespace OnlineHotelManagementAPI.Repositories
             _context = context;
         }
 
+        #region DeleteReservation
         public string DeleteReservation(int id)
         {
             string stcode = string.Empty;
@@ -34,13 +35,24 @@ namespace OnlineHotelManagementAPI.Repositories
             }
             return stcode;
         }
+        #endregion
 
+        #region GetAllReservation
         public List<Reservation> GetAllReservation()
         {
-            List<Reservation> reservation = _context.Reservations.ToList();
-            return reservation;
+            try
+            {
+                List<Reservation> reservation = _context.Reservations.ToList();
+                return reservation;
+            }
+            catch
+            {
+                throw;
+            }
         }
+        #endregion
 
+        #region GetReservationById
         public string GetReservationById(int Id)
         {
             Reservation reservation;
@@ -57,7 +69,6 @@ namespace OnlineHotelManagementAPI.Repositories
                 {
                     stcode = "400";
                 }
-
             }
             catch (Exception e)
             {
@@ -66,7 +77,9 @@ namespace OnlineHotelManagementAPI.Repositories
             return stcode;
 
         }
+        #endregion
 
+        #region InsertReservation 
         public string InsertReservation(Reservation reservation)
         {
             string stcode = string.Empty;
@@ -83,12 +96,9 @@ namespace OnlineHotelManagementAPI.Repositories
             }
             return stcode;
         }
+        #endregion
 
-        //public void SaveInventory(Inventory inventory)
-        //{
-        //    _context.SaveChanges();
-        //}
-
+        #region UpdateReservation
         public string UpdateReservation(Reservation reservation)
         {
             string stcode = string.Empty;
@@ -105,5 +115,6 @@ namespace OnlineHotelManagementAPI.Repositories
             }
             return stcode;
         }
+        #endregion
     }
 }

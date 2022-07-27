@@ -17,6 +17,7 @@ namespace OnlineHotelManagementAPI.Controllers
             S_rate = rate;
         }
 
+
         [HttpPost("InsertRate"), Authorize(Roles = "Receptionist, Manager, Owner")]
         public IActionResult InsertRate(Rate rate)
         {
