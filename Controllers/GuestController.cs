@@ -11,40 +11,59 @@ namespace OnlineHotelManagementAPI.Controllers
     public class GuestController : ControllerBase
     {
         private GuestService _guest;
-        public GuestController(GuestService guest)
+        private HotelContext _context;
+
+        public GuestController(GuestService guest, HotelContext context)
         {
             _guest = guest;
+            _context = context;
         }
 
-
+        #region InsertGuest
         [HttpPost("InsertGuest"), Authorize(Roles = "Manager, Receptionist, Owner")]
         public IActionResult AddGuest(Guest guest)
         {
             return Ok(_guest.AddGuest(guest));
         }
+        #endregion
 
+        #region UpdateGuest
         [HttpPut("UpdateGuest"), Authorize(Roles = "Manager, Receptionist, Owner")]
         public IActionResult UpdateGuest(Guest guest)
         {
             return Ok(_guest.UpdateGuest(guest));
         }
+        #endregion
 
+        #region DeleteGuest
         [HttpDelete("DeleteGuest"), Authorize(Roles = "Manager, Receptionist, Owner")]
         public IActionResult RemoveGuest(int id)
         {
             return Ok(_guest.RemoveGuest(id));
         }
+        #endregion
 
+        #region GetGuestById
         [HttpGet("GetGuestById"), Authorize(Roles = "Manager, Receptionist, Owner")]
         public IActionResult GetGuestById(int id)
         {
-            return Ok(_guest.GetById(id));
+            if(_guest.GetById(id) == "200")
+            {
+                return Ok(_context.Guests.Find(id));
+            }
+            else
+            {
+                return Ok(new { message = "Not Found" });
+            }       
         }
+        #endregion
 
+        #region GetAllGuests
         [HttpGet("GetAllGuests"), Authorize(Roles = "Manager, Receptionist, Owner")]
         public IActionResult GetAllGuests()
         {
             return Ok(_guest.GetAll());
         }
+        #endregion
     }
 }

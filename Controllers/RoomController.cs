@@ -11,40 +11,58 @@ namespace OnlineHotelManagementAPI.Controllers
     public class RoomController : ControllerBase
     {
         private RoomService _room;
-        public RoomController(RoomService room)
+        private HotelContext _context;
+        public RoomController(RoomService room, HotelContext context)
         {
             _room = room;
+            _context = context;
         }
 
-
+        #region InsertRoom
         [HttpPost("InsertRoom"), Authorize(Roles = "Manager, Owner")]
         public IActionResult AddRoom(Room room)
         {
             return Ok(_room.AddRoom(room));
         }
+        #endregion
 
+        #region UpdateRoom
         [HttpPut("UpdateRoom"), Authorize(Roles = "Manager, Owner")]
         public IActionResult UpdateRoom(Room room)
         {
             return Ok(_room.UpdateRoom(room));
         }
+        #endregion
 
-        [HttpDelete("RemoveId"), Authorize(Roles = "Manager, Owner")]
+        #region RemoveRoom
+        [HttpDelete("RemoveRoom"), Authorize(Roles = "Manager, Owner")]
         public IActionResult RemoveRoom(int id)
         {
             return Ok(_room.RemoveRoom(id));
         }
+        #endregion
 
+        #region GetRoomById
         [HttpGet("GetRoomById"), Authorize(Roles = "Receptionist, Manager, Owner")]
-        public IActionResult GetRoomById(int id)
+        public IActionResult GetById(int id)
         {
-            return Ok(_room.GetById(id));
+            if (_room.GetById(id) == "200")
+            {
+                return Ok(_context.Rooms.Find(id));
+            }
+            else
+            {
+                return Ok(new { message = "Not Found" });
+            }
         }
+        #endregion
 
+        #region GetAllRooms
         [HttpGet("GetAllRooms"), Authorize(Roles = "Receptionist, Manager, Owner")]
         public IActionResult GetAllRooms()
         {
             return Ok(_room.GetAll());
         }
+        #endregion
     }
 }

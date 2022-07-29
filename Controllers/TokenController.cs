@@ -29,14 +29,8 @@ namespace OnlineHotelManagementAPI.Controllers
             _hotelContext = hotelContext;
         }
 
-        //[HttpGet, Authorize]
-        //public ActionResult<string> GetMe()
-        //{
-        //    var userName = _userService.GetMyName();
-        //    return Ok(userName);
-        //}
-
-        [HttpPost("register")]
+        #region RegisterAdmin
+        [HttpPost("Register")]
         public async Task<ActionResult<Admin>> Register(Login request)
         {
             CreatePasswordHash(request.Password, out byte[] passwordHash, out byte[] passwordSalt);
@@ -48,81 +42,40 @@ namespace OnlineHotelManagementAPI.Controllers
 
             return Ok(_adminService.AddAdmin(admin));
         }
+        #endregion
 
-        [HttpPost("login")]
+        #region LoginAdmin
+        [HttpPost("Login")]
         public async Task<ActionResult<string>> Login(Login request)
         {
             Admin? admin1 = _hotelContext.Admins.Find(request.Username);
             if (admin1 == null)
             {
-                return BadRequest("User not found.");
+                return NotFound(new { message = "User not found." });
             }
-
-            if (!VerifyPasswordHash(request.Password, admin1.PasswordHash, admin1.PasswordSalt))
+            else
             {
-                return BadRequest("Wrong password.");
-            }
+                if (!VerifyPasswordHash(request.Password, admin1.PasswordHash, admin1.PasswordSalt))
+                {
+                    return BadRequest(new { message = "Wrong password." });
+                }
 
-            admin1 = _hotelContext.Admins.Find(request.Role);
-            if (admin1 == null)
-            {
-                return BadRequest("Role forbidden.");
-            }
-            string token = CreateToken(admin1);
+                //admin1 = _hotelContext.Admins.Find(request.Role);
+                if (admin1.Role != request.Role)
+                {
+                    return BadRequest(new { message = "Role forbidden." });
+                }
 
+                string token = CreateToken(admin1);
+
+                return Ok(new { token, admin1 });
+            }
             //var refreshToken = GenerateRefreshToken();
             //SetRefreshToken(refreshToken);
-
-            return Ok(token);
         }
+        #endregion  
 
-        //[HttpPost("refresh-token")]
-        //public async Task<ActionResult<string>> RefreshToken()
-        //{
-        //    var refreshToken = Request.Cookies["refreshToken"];
-
-        //    if (!admin.RefreshToken.Equals(refreshToken))
-        //    {
-        //        return Unauthorized("Invalid Refresh Token.");
-        //    }
-        //    else if (admin.TokenExpires < DateTime.Now)
-        //    {
-        //        return Unauthorized("Token expired.");
-        //    }
-
-        //    string token = CreateToken(admin);
-        //    var newRefreshToken = GenerateRefreshToken();
-        //    SetRefreshToken(newRefreshToken);
-
-        //    return Ok(token);
-        //}
-
-        //private RefreshToken GenerateRefreshToken()
-        //{
-        //    var refreshToken = new RefreshToken
-        //    {
-        //        Token = Convert.ToBase64String(RandomNumberGenerator.GetBytes(64)),
-        //        Expires = DateTime.Now.AddDays(7),
-        //        Created = DateTime.Now
-        //    };
-
-        //    return refreshToken;
-        //}
-
-        //private void SetRefreshToken(RefreshToken newRefreshToken)
-        //{
-        //    var cookieOptions = new CookieOptions
-        //    {
-        //        HttpOnly = true,
-        //        Expires = newRefreshToken.Expires
-        //    };
-        //    Response.Cookies.Append("refreshToken", newRefreshToken.Token, cookieOptions);
-
-        //    admin.RefreshToken = newRefreshToken.Token;
-        //    admin.TokenCreated = newRefreshToken.Created;
-        //    admin.TokenExpires = newRefreshToken.Expires;
-        //}
-
+        #region CreateToken
         private string CreateToken(Admin admin)
         {
             List<Claim> claims = new List<Claim>
@@ -145,7 +98,9 @@ namespace OnlineHotelManagementAPI.Controllers
 
             return jwt;
         }
+        #endregion
 
+        #region CreatePasswordHash
         private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
         {
             using (var hmac = new HMACSHA512())
@@ -154,7 +109,9 @@ namespace OnlineHotelManagementAPI.Controllers
                 passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
             }
         }
+        #endregion
 
+        #region VerifyPasswordHash
         private bool VerifyPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt)
         {
             using (var hmac = new HMACSHA512(passwordSalt))
@@ -163,5 +120,6 @@ namespace OnlineHotelManagementAPI.Controllers
                 return computedHash.SequenceEqual(passwordHash);
             }
         }
+        #endregion
     }
 }

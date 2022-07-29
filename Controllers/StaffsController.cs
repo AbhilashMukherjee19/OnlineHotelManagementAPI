@@ -11,42 +11,59 @@ namespace OnlineHotelManagementAPI.Controllers
     public class StaffsController : ControllerBase
     {
         private readonly StaffService S_staff;
+        private HotelContext _context;
 
-        public StaffsController(StaffService staff)
+        public StaffsController(StaffService staff, HotelContext context)
         {
             S_staff = staff;
+            _context = context;
         }
 
-        
+        #region InsertStaff
         [HttpPost("InsertStaff"), Authorize(Roles = "Owner")]
         public IActionResult InsertStaff(Staff staff)
         {
             return Ok(S_staff.InsertStaff(staff));
         }
+        #endregion
 
+        #region UpdateStaff
         [HttpPut("UpdateStaff"), Authorize(Roles = "Owner")]
         public IActionResult UpdateStaff(Staff customer)
         {
             return Ok(S_staff.UpdateStaff(customer));
         }
+        #endregion
 
+        #region DeleteStaff
         [HttpDelete("DeleteStaff"), Authorize(Roles = "Owner")]
         public IActionResult DeleteStaff(int Id)
         {
             return Ok(S_staff.DeleteStaff(Id));
         }
+        #endregion
 
+        #region GetStaffById
         [HttpGet("GetStaffById"), Authorize(Roles = "Owner")]
-
         public IActionResult GetStaffById(int Id)
         {
-            return Ok(S_staff.GetStaffById(Id));
+            if (S_staff.GetStaffById(Id) == "200")
+            {
+                return Ok(_context.Staffs.Find(Id));
+            }
+            else
+            {
+                return Ok(new { message = "Not Found" });
+            }
         }
+        #endregion
 
+        #region GetAllStaff
         [HttpGet("GetAllStaff"), Authorize(Roles = "Owner")]
         public IActionResult GetAllStaff()
         {
             return Ok(S_staff.GetAllStaff());
         }
+        #endregion
     }
 }
