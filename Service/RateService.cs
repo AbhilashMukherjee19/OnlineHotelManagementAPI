@@ -26,5 +26,15 @@ namespace OnlineHotelManagementAPI.Service
         {
             return _IRate.UpdateRate(rate);
         }
+
+        public string GetRateById(int Id)
+        {
+            return _IRate.GetRateById(Id);
+        }
+
+        public string DeleteRate(int rate)
+        {
+            return _IRate.DeleteRate(rate);
+        }
     }
 }

@@ -7,5 +7,7 @@ namespace OnlineHotelManagementAPI.Repositories
         List<Rate> GetAllRate();
         string InsertRate(Rate rate);
         string UpdateRate(Rate rate);
+        string GetRateById(int id);
+        string DeleteRate (int id);
     }
 }

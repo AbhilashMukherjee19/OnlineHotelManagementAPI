@@ -30,9 +30,9 @@ namespace OnlineHotelManagementAPI.Models
         [Display(Name = "Status of the room")]
         public string status { get; set; }
 
-        [Required]
-        public int rateId { get; set; }
-        [ForeignKey("rateId")]
-        public Rate Rate { get; set; }
+        //[Required]
+        //public int rateId { get; set; }
+        //[ForeignKey("rateId")]
+        //public Rate Rate { get; set; }
     }
 }

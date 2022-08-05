@@ -5,15 +5,13 @@ namespace OnlineHotelManagementAPI.Service
 {
     public class StaffService : IStaff
     {
-        //private HotelContext _context;
-
-
         private IStaff _IStaff;
 
         public StaffService(IStaff iStaff)
         {
             _IStaff = iStaff;
         }
+
         public string DeleteStaff(int Id)
         {
             return _IStaff.DeleteStaff(Id);

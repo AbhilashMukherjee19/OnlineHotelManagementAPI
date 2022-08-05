@@ -32,5 +32,20 @@ namespace OnlineHotelManagementAPI.Service
         {
             return _IPayment.UpdatePayment(payment);
         }
+
+        public string GetPaymentById(int Id)
+        {
+            return _IPayment.GetPaymentById(Id);
+        }
+
+        public string DeletePayment(int rate)
+        {
+            return _IPayment.DeletePayment(rate);
+        }
+
+        public async Task<Payment> SendEmail(Payment payment)
+        {
+            return await _IPayment.SendEmail(payment);
+        }
     }
 }

@@ -6,6 +6,7 @@ using OnlineHotelManagementAPI.Service;
 
 namespace OnlineHotelManagementAPI.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ReservationController : ControllerBase
@@ -20,7 +21,7 @@ namespace OnlineHotelManagementAPI.Controllers
         }
 
         #region InsertReservation
-        [HttpPost("InsertReservation"), Authorize(Roles = "Receptionist, Manager, Owner")]
+        [HttpPost("InsertReservation")/*, Authorize(Roles = "Receptionist, Manager, Owner")*/]
         public IActionResult InsertReservation(Reservation reservation)
         {
             return Ok(S_reservation.InsertReservation(reservation));
@@ -28,7 +29,7 @@ namespace OnlineHotelManagementAPI.Controllers
         #endregion
 
         #region UpdateReservation
-        [HttpPut("UpdateReservation"), Authorize(Roles = "Receptionist, Manager, Owner")]
+        [HttpPut("UpdateReservation")/*, Authorize(Roles = "Receptionist, Manager, Owner")*/]
         public IActionResult UpdateReservation(Reservation reservation)
         {
             return Ok(S_reservation.UpdateReservation(reservation));
@@ -36,7 +37,7 @@ namespace OnlineHotelManagementAPI.Controllers
         #endregion
 
         #region DeleteReservation
-        [HttpDelete("DeleteReservation"), Authorize(Roles = "Receptionist, Manager, Owner")]
+        [HttpDelete("DeleteReservation")/*, Authorize(Roles = "Receptionist, Manager, Owner")*/]
         public IActionResult DeleteReservation(int Id)
         {
             return Ok(S_reservation.DeleteReservation(Id));
@@ -44,7 +45,7 @@ namespace OnlineHotelManagementAPI.Controllers
         #endregion
 
         #region GetReservationById
-        [HttpGet("GetReservationById"), Authorize(Roles = "Receptionist, Manager, Owner")]
+        [HttpGet("GetReservationById")/*, Authorize(Roles = "Receptionist, Manager, Owner")*/]
         public IActionResult GetReservationById(int Id)
         {
             if (S_reservation.GetReservationById(Id) == "200")
@@ -59,7 +60,7 @@ namespace OnlineHotelManagementAPI.Controllers
         #endregion
 
         #region GetAllReservations
-        [HttpGet("GetAllReservations"), Authorize(Roles = "Manager, Receptionist, Owner")]
+        [HttpGet("GetAllReservations")/*, Authorize(Roles = "Manager, Receptionist, Owner")*/]
         public IActionResult GetAllReservation()
         {
             return Ok(S_reservation.GetAllReservation());

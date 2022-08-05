@@ -5,10 +5,11 @@ namespace OnlineHotelManagementAPI.Repositories
     public interface IPayment
     {
         List<Payment> GetAllPayment();
-        //string GetStaffById(int Id);
+        string GetPaymentById(int Id);
         string InsertPayment(Payment payment);
         string UpdatePayment(Payment payment);
-        //string DeleteStaff(int Id);
+        string DeletePayment(int Id);
         void SavePayment(Payment payment);
+        public Task<Payment> SendEmail(Payment payment);
     }
 }

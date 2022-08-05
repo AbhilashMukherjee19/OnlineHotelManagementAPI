@@ -32,9 +32,9 @@ namespace OnlineHotelManagementAPI.Models
         //[ForeignKey("guestId")]
         //public ICollection<Reservation> Reservations { get; set; }
 
-        [Required]
-        public int roomId { get; set; }
-        [ForeignKey("roomId")]
-        public Room Room { get; set; }
+        //[Required]
+        //public int roomId { get; set; }
+        //[ForeignKey("roomId")]
+        //public Room Room { get; set; }
     }
 }

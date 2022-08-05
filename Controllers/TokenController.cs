@@ -68,7 +68,8 @@ namespace OnlineHotelManagementAPI.Controllers
 
                 string token = CreateToken(admin1);
 
-                return Ok(new { token, admin1 });
+                //return Ok(new { token, admin1 });
+                return Ok(token);
             }
             //var refreshToken = GenerateRefreshToken();
             //SetRefreshToken(refreshToken);

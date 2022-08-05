@@ -6,6 +6,7 @@ using OnlineHotelManagementAPI.Service;
 
 namespace OnlineHotelManagementAPI.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class StaffsController : ControllerBase
@@ -20,7 +21,7 @@ namespace OnlineHotelManagementAPI.Controllers
         }
 
         #region InsertStaff
-        [HttpPost("InsertStaff"), Authorize(Roles = "Owner")]
+        [HttpPost("InsertStaff")/*, Authorize(Roles = "Owner")*/]
         public IActionResult InsertStaff(Staff staff)
         {
             return Ok(S_staff.InsertStaff(staff));
@@ -28,7 +29,7 @@ namespace OnlineHotelManagementAPI.Controllers
         #endregion
 
         #region UpdateStaff
-        [HttpPut("UpdateStaff"), Authorize(Roles = "Owner")]
+        [HttpPut("UpdateStaff")/*, Authorize(Roles = "Owner")*/]
         public IActionResult UpdateStaff(Staff customer)
         {
             return Ok(S_staff.UpdateStaff(customer));
@@ -36,7 +37,7 @@ namespace OnlineHotelManagementAPI.Controllers
         #endregion
 
         #region DeleteStaff
-        [HttpDelete("DeleteStaff"), Authorize(Roles = "Owner")]
+        [HttpDelete("DeleteStaff")/*, Authorize(Roles = "Owner")*/]
         public IActionResult DeleteStaff(int Id)
         {
             return Ok(S_staff.DeleteStaff(Id));
@@ -44,7 +45,7 @@ namespace OnlineHotelManagementAPI.Controllers
         #endregion
 
         #region GetStaffById
-        [HttpGet("GetStaffById"), Authorize(Roles = "Owner")]
+        [HttpGet("GetStaffById")/*, Authorize(Roles = "Owner")*/]
         public IActionResult GetStaffById(int Id)
         {
             if (S_staff.GetStaffById(Id) == "200")
@@ -59,7 +60,7 @@ namespace OnlineHotelManagementAPI.Controllers
         #endregion
 
         #region GetAllStaff
-        [HttpGet("GetAllStaff"), Authorize(Roles = "Owner")]
+        [HttpGet("GetAllStaff")/*, Authorize(Roles = "Owner")*/]
         public IActionResult GetAllStaff()
         {
             return Ok(S_staff.GetAllStaff());

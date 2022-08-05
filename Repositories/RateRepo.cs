@@ -63,5 +63,58 @@ namespace OnlineHotelManagementAPI.Repositories
             return stcode;
         }
         #endregion
+
+        #region GetRateById
+        public string GetRateById(int Id)
+        {
+            Rate rate;
+            string stcode = string.Empty;
+            try
+            {
+                rate = _context.Rates.Find(Id);
+                if (rate != null)
+                {
+                    _context.SaveChanges();
+                    stcode = "200";
+                }
+                else
+                {
+                    stcode = "400";
+                }
+            }
+            catch (Exception e)
+            {
+                stcode = e.Message;
+            }
+            return stcode;
+
+        }
+        #endregion
+
+        #region DeleteRate
+        public string DeleteRate(int id)
+        {
+            string stcode = string.Empty;
+            try
+            {
+                var rate = _context.Rates.Find(id);
+                if (rate != null)
+                {
+                    _context.Rates.Remove(rate);
+                    _context.SaveChanges();
+                    stcode = "200";
+                }
+                else
+                {
+                    stcode = "400";
+                }
+            }
+            catch
+            {
+                stcode = "400";
+            }
+            return stcode;
+        }
+        #endregion
     }
 }

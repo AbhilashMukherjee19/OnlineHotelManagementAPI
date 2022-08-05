@@ -12,7 +12,7 @@ using OnlineHotelManagementAPI.Models;
 namespace OnlineHotelManagementAPI.Migrations
 {
     [DbContext(typeof(HotelContext))]
-    [Migration("20220726104553_InitialMig1")]
+    [Migration("20220802122347_InitialMig1")]
     partial class InitialMig1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,6 +26,9 @@ namespace OnlineHotelManagementAPI.Migrations
 
             modelBuilder.Entity("OnlineHotelManagementAPI.Models.Admin", b =>
                 {
+                    b.Property<string>("Username")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<byte[]>("PasswordHash")
                         .IsRequired()
                         .HasColumnType("varbinary(max)");
@@ -48,9 +51,7 @@ namespace OnlineHotelManagementAPI.Migrations
                     b.Property<DateTime>("TokenExpires")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Username")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.HasKey("Username");
 
                     b.ToTable("Admins");
                 });
@@ -80,12 +81,7 @@ namespace OnlineHotelManagementAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("roomId")
-                        .HasColumnType("int");
-
                     b.HasKey("GuestId");
-
-                    b.HasIndex("roomId");
 
                     b.ToTable("Guests");
                 });
@@ -122,8 +118,9 @@ namespace OnlineHotelManagementAPI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PaymentID"), 1L, 1);
 
-                    b.Property<long>("CardNumber")
-                        .HasColumnType("bigint");
+                    b.Property<string>("CardNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CardholderName")
                         .IsRequired()
@@ -175,16 +172,11 @@ namespace OnlineHotelManagementAPI.Migrations
                     b.Property<double>("advance_payment")
                         .HasColumnType("float");
 
-                    b.Property<string>("checkout_date")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("checkin_date")
+                        .HasColumnType("datetime2");
 
-                    b.Property<string>("chekin_date")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("guestId")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("checkout_date")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("no_of_adults")
                         .HasColumnType("int");
@@ -192,17 +184,14 @@ namespace OnlineHotelManagementAPI.Migrations
                     b.Property<int>("no_of_children")
                         .HasColumnType("int");
 
-                    b.Property<string>("no_of_rooms")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("no_of_rooms")
+                        .HasColumnType("int");
 
                     b.Property<string>("status")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("guestId");
 
                     b.ToTable("Reservations");
                 });
@@ -221,9 +210,6 @@ namespace OnlineHotelManagementAPI.Migrations
                     b.Property<DateTime>("check_out")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("rateId")
-                        .HasColumnType("int");
-
                     b.Property<string>("room_type")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -233,8 +219,6 @@ namespace OnlineHotelManagementAPI.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("room_id");
-
-                    b.HasIndex("rateId");
 
                     b.ToTable("Rooms");
                 });
@@ -279,39 +263,6 @@ namespace OnlineHotelManagementAPI.Migrations
                     b.HasKey("StaffId");
 
                     b.ToTable("Staffs");
-                });
-
-            modelBuilder.Entity("OnlineHotelManagementAPI.Models.Guest", b =>
-                {
-                    b.HasOne("OnlineHotelManagementAPI.Models.Room", "Room")
-                        .WithMany()
-                        .HasForeignKey("roomId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Room");
-                });
-
-            modelBuilder.Entity("OnlineHotelManagementAPI.Models.Reservation", b =>
-                {
-                    b.HasOne("OnlineHotelManagementAPI.Models.Guest", "Guest")
-                        .WithMany()
-                        .HasForeignKey("guestId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Guest");
-                });
-
-            modelBuilder.Entity("OnlineHotelManagementAPI.Models.Room", b =>
-                {
-                    b.HasOne("OnlineHotelManagementAPI.Models.Rate", "Rate")
-                        .WithMany()
-                        .HasForeignKey("rateId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Rate");
                 });
 #pragma warning restore 612, 618
         }

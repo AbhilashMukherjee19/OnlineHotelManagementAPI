@@ -6,6 +6,7 @@ using OnlineHotelManagementAPI.Service;
 
 namespace OnlineHotelManagementAPI.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class GuestController : ControllerBase
@@ -20,7 +21,7 @@ namespace OnlineHotelManagementAPI.Controllers
         }
 
         #region InsertGuest
-        [HttpPost("InsertGuest"), Authorize(Roles = "Manager, Receptionist, Owner")]
+        [HttpPost("InsertGuest")/*, Authorize(Roles = "Manager, Receptionist, Owner")*/]
         public IActionResult AddGuest(Guest guest)
         {
             return Ok(_guest.AddGuest(guest));
@@ -28,7 +29,7 @@ namespace OnlineHotelManagementAPI.Controllers
         #endregion
 
         #region UpdateGuest
-        [HttpPut("UpdateGuest"), Authorize(Roles = "Manager, Receptionist, Owner")]
+        [HttpPut("UpdateGuest")/*, Authorize(Roles = "Manager, Receptionist, Owner")*/]
         public IActionResult UpdateGuest(Guest guest)
         {
             return Ok(_guest.UpdateGuest(guest));
@@ -36,7 +37,7 @@ namespace OnlineHotelManagementAPI.Controllers
         #endregion
 
         #region DeleteGuest
-        [HttpDelete("DeleteGuest"), Authorize(Roles = "Manager, Receptionist, Owner")]
+        [HttpDelete("DeleteGuest")/*, Authorize(Roles = "Manager, Receptionist, Owner")*/]
         public IActionResult RemoveGuest(int id)
         {
             return Ok(_guest.RemoveGuest(id));
@@ -44,7 +45,7 @@ namespace OnlineHotelManagementAPI.Controllers
         #endregion
 
         #region GetGuestById
-        [HttpGet("GetGuestById"), Authorize(Roles = "Manager, Receptionist, Owner")]
+        [HttpGet("GetGuestById")/*, Authorize(Roles = "Manager, Receptionist, Owner")*/]
         public IActionResult GetGuestById(int id)
         {
             if(_guest.GetById(id) == "200")
@@ -59,7 +60,7 @@ namespace OnlineHotelManagementAPI.Controllers
         #endregion
 
         #region GetAllGuests
-        [HttpGet("GetAllGuests"), Authorize(Roles = "Manager, Receptionist, Owner")]
+        [HttpGet("GetAllGuests")/*, Authorize(Roles = "Manager, Receptionist, Owner")*/]
         public IActionResult GetAllGuests()
         {
             return Ok(_guest.GetAll());

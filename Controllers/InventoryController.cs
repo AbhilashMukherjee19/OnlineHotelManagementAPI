@@ -6,6 +6,7 @@ using OnlineHotelManagementAPI.Service;
 
 namespace OnlineHotelManagementAPI.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class InventoryController : ControllerBase
@@ -21,7 +22,7 @@ namespace OnlineHotelManagementAPI.Controllers
         }
 
         #region InsertInventory
-        [HttpPost("InsertInventory"), Authorize(Roles = "Manager, Owner")]
+        [HttpPost("InsertInventory")/*, Authorize(Roles = "Manager, Owner")*/]
         public IActionResult InsertInventory(Inventory inventory)
         {
             return Ok(S_inventory.InsertInventory(inventory));
@@ -29,7 +30,7 @@ namespace OnlineHotelManagementAPI.Controllers
         #endregion
 
         #region UpdateInventory
-        [HttpPut("UpdateInventory"), Authorize(Roles = "Manager, Owner")]
+        [HttpPut("UpdateInventory")/*, Authorize(Roles = "Manager, Owner")*/]
         public IActionResult UpdateInventory(Inventory inventory)
         {
             return Ok(S_inventory.UpdateInventory(inventory));
@@ -37,7 +38,7 @@ namespace OnlineHotelManagementAPI.Controllers
         #endregion
 
         #region DeleteInventory
-        [HttpDelete("DeleteInventory"), Authorize(Roles = "Manager, Owner")]
+        [HttpDelete("DeleteInventory")/*, Authorize(Roles = "Manager, Owner")*/]
         public IActionResult DeleteInventory(int Id)
         {
             return Ok(S_inventory.DeleteInventory(Id));
@@ -45,7 +46,7 @@ namespace OnlineHotelManagementAPI.Controllers
         #endregion
 
         #region GetInventoryById
-        [HttpGet("GetInventoryById"), Authorize(Roles = "Manager, Owner")]
+        [HttpGet("GetInventoryById")/*, Authorize(Roles = "Manager, Owner")*/]
         public IActionResult GetInventoryById(int Id)
         {
             if (S_inventory.GetInventoryById(Id) == "200")
@@ -60,7 +61,7 @@ namespace OnlineHotelManagementAPI.Controllers
         #endregion
 
         #region GetAllInventories
-        [HttpGet("GetAllInventories"), Authorize(Roles = "Manager, Owner")]
+        [HttpGet("GetAllInventories")/*, Authorize(Roles = "Manager, Owner")*/]
         public IActionResult GetAllInventories()
         {
             return Ok(S_inventory.GetAllInventories());

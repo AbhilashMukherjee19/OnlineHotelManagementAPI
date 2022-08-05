@@ -17,17 +17,17 @@ namespace OnlineHotelManagementAPI.Models
         [Required(ErrorMessage = "Number of adults cannot be empty")]
         public int no_of_adults { get; set; }
 
-        [DataType("date")]
+        [DataType(DataType.Date)]
         [Required(ErrorMessage = "Checkin date cannot be empty")]
-        public string chekin_date { get; set; }
+        public DateTime checkin_date { get; set; }
 
-        [DataType("date")]
+        [DataType(DataType.Date)]
         [Required(ErrorMessage = "Checkout date cannot be empty")]
-        public string checkout_date { get; set; }
+        public DateTime checkout_date { get; set; }
 
         [DataType("int")]
         [Required(ErrorMessage = "Number of rooms cannot be empty")]
-        public string no_of_rooms { get; set; }
+        public int no_of_rooms { get; set; }
 
         [Required(ErrorMessage = "Status cannot be empty")]
         public string status { get; set; }
@@ -41,9 +41,9 @@ namespace OnlineHotelManagementAPI.Models
         [MinLength(10, ErrorMessage = "Phone number cannot less than 10")]
         public string PhnNumber { get; set; }
 
-        [Required]
-        public int guestId { get; set; }
-        [ForeignKey("guestId")]
-        public Guest Guest { get; set; }
+        //[Required]
+        //public int guestId { get; set; }
+        //[ForeignKey("guestId")]
+        //public Guest Guest { get; set; }
     }
 }

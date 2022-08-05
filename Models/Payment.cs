@@ -27,12 +27,16 @@ namespace OnlineHotelManagementAPI.Models
         [MinLength(16, ErrorMessage = "Please enter the card number")]
         [Required(ErrorMessage = "Please enter a valid Card Number")]
         [Display(Name = "Card Number")]
-        public long CardNumber { get; set; }
-
-
+        public string CardNumber { get; set; }
 
         //public int rateId { get; set; }
         //[ForeignKey("rateId")]
         //public Rate Rate { get; set; }
+
+
+        [DataType(DataType.EmailAddress)]
+        [Required(ErrorMessage = "Please enter Email ID")]
+        [Display(Name = "Email")]
+        public string Email { get; set; }
     }
 }
