@@ -136,7 +136,7 @@ namespace OnlineHotelManagementAPI.Repositories
             try
             {
                 var email = new MimeMessage();
-                email.From.Add(MailboxAddress.Parse("abhilash_m.ee2018@msit.edu.in"));
+                email.From.Add(MailboxAddress.Parse("EMAIL"));
                 email.To.Add(MailboxAddress.Parse(payment.Email));
                 email.Subject = "Payment Done";
                 email.Body = new TextPart(MimeKit.Text.TextFormat.Html)
@@ -147,7 +147,7 @@ namespace OnlineHotelManagementAPI.Repositories
                 };
                 using var smtp = new SmtpClient();
                 smtp.Connect("smtp.gmail.com",587,false);
-                smtp.Authenticate("abhilash_m.ee2018@msit.edu.in", "msit1234");
+                smtp.Authenticate("EMAIL", "PASSWORD");
                 smtp.Send(email);
                 smtp.Disconnect(true);
                 return payment;
