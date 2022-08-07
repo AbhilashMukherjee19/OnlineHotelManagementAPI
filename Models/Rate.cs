@@ -40,9 +40,9 @@ namespace OnlineHotelManagementAPI.Models
         //[ForeignKey("paymentId")]
         //public Payment Payment { get; set; }
 
-        [Required]
-        public int roomId { get; set; }
-        //[ForeignKey("roomId")]
-        //public Room? Room { get; set; }
+        //[Required]
+        public int? room_id { get; set; }
+        [ForeignKey("room_id")]
+        public Room? Room { get; set; }
     }
 }
