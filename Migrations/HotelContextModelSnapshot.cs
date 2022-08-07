@@ -154,6 +154,9 @@ namespace OnlineHotelManagementAPI.Migrations
                     b.Property<double>("TotalAmount")
                         .HasColumnType("float");
 
+                    b.Property<int>("roomId")
+                        .HasColumnType("int");
+
                     b.HasKey("rate_id");
 
                     b.ToTable("Rates");

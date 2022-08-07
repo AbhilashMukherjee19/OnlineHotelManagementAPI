@@ -12,8 +12,8 @@ using OnlineHotelManagementAPI.Models;
 namespace OnlineHotelManagementAPI.Migrations
 {
     [DbContext(typeof(HotelContext))]
-    [Migration("20220802122347_InitialMig1")]
-    partial class InitialMig1
+    [Migration("20220807130530_initialmig1")]
+    partial class initialmig1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -127,6 +127,10 @@ namespace OnlineHotelManagementAPI.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("PaymentID");
 
                     b.ToTable("Payments");
@@ -151,6 +155,9 @@ namespace OnlineHotelManagementAPI.Migrations
 
                     b.Property<double>("TotalAmount")
                         .HasColumnType("float");
+
+                    b.Property<int>("roomId")
+                        .HasColumnType("int");
 
                     b.HasKey("rate_id");
 

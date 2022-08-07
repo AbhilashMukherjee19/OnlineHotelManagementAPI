@@ -136,18 +136,18 @@ namespace OnlineHotelManagementAPI.Repositories
             try
             {
                 var email = new MimeMessage();
-                email.From.Add(MailboxAddress.Parse("EMAIL"));
+                email.From.Add(MailboxAddress.Parse("EMAIL ID"));
                 email.To.Add(MailboxAddress.Parse(payment.Email));
                 email.Subject = "Payment Done";
                 email.Body = new TextPart(MimeKit.Text.TextFormat.Html)
                 {
                     Text = "Dear " + payment.CardholderName + ",<br>" +
-                    "Welcome to our Hotel. Your payment was successfull. Visit us again."+"<br>"+
+                    "Welcome to our Hotel. Your payment was successful. Visit us again."+"<br>"+
                     "<pre>                                           Regards, Hotel.</pre>"
                 };
                 using var smtp = new SmtpClient();
                 smtp.Connect("smtp.gmail.com",587,false);
-                smtp.Authenticate("EMAIL", "PASSWORD");
+                smtp.Authenticate("EMAIL ID", "PASSWORD");
                 smtp.Send(email);
                 smtp.Disconnect(true);
                 return payment;

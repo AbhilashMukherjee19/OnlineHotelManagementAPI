@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace OnlineHotelManagementAPI.Migrations
 {
-    public partial class InitialMig1 : Migration
+    public partial class initialmig1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -64,7 +64,8 @@ namespace OnlineHotelManagementAPI.Migrations
                     PaymentID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CardholderName = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
-                    CardNumber = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    CardNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -80,7 +81,8 @@ namespace OnlineHotelManagementAPI.Migrations
                     No_of_Days = table.Column<int>(type: "int", nullable: false),
                     ExtensionPrice = table.Column<double>(type: "float", nullable: false),
                     PerNightPrice = table.Column<double>(type: "float", nullable: false),
-                    TotalAmount = table.Column<double>(type: "float", nullable: false)
+                    TotalAmount = table.Column<double>(type: "float", nullable: false),
+                    roomId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
