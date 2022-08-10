@@ -10,23 +10,23 @@ namespace OnlineHotelManagementAPI.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int room_id { get; set; }
 
-        [Required]
+        //[Required]
         public string room_type { get; set; }
 
 
         [DataType(DataType.Date)]
-        [Required(ErrorMessage = "MM/DD/YYYY Format")]
-        [Display(Name = "Check-in Date")]
+        //[Required(ErrorMessage = "MM/DD/YYYY Format")]
+        //[Display(Name = "Check-in Date")]
         public DateTime check_in { get; set; }
 
 
         [DataType(DataType.Date)]
-        [Required(ErrorMessage = "MM/DD/YYYY Format")]
-        [Display(Name = "Check-out Date")]
+        //[Required(ErrorMessage = "MM/DD/YYYY Format")]
+        //[Display(Name = "Check-out Date")]
         public DateTime check_out { get; set; }
 
 
-        [Required(ErrorMessage = "Either Reserved or unreserved")]
+        //[Required(ErrorMessage = "Either Reserved or unreserved")]
         [Display(Name = "Status of the room")]
         public string status { get; set; }
 

@@ -147,7 +147,7 @@ namespace OnlineHotelManagementAPI.Repositories
                 };
                 using var smtp = new SmtpClient();
                 smtp.Connect("smtp.gmail.com",587,false);
-                smtp.Authenticate("EMAIL", "PASSWORD");
+                smtp.Authenticate("EMAIL ID", "PASSWORD");
                 smtp.Send(email);
                 smtp.Disconnect(true);
                 return payment;

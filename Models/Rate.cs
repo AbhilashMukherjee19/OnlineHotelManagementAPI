@@ -12,7 +12,7 @@ namespace OnlineHotelManagementAPI.Models
 
 
         [Required(ErrorMessage = "Please number of days")]
-        [Display(Name = "Number of Days")]
+        //[Display(Name = "Number of Days")]
         public int No_of_Days { get; set; }
 
 
@@ -23,15 +23,15 @@ namespace OnlineHotelManagementAPI.Models
         //public Room Room { get; set; }
 
 
-        [Required(ErrorMessage = "Please enter a numeric value")]
+        //[Required(ErrorMessage = "Please enter a numeric value")]
         public double ExtensionPrice { get; set; }
 
 
-        [Required(ErrorMessage = "Please enter a numeric value")]
+        //[Required(ErrorMessage = "Please enter a numeric value")]
         public double PerNightPrice { get; set; }
 
 
-        [Required(ErrorMessage = "Please enter the total amount")]
+        //[Required(ErrorMessage = "Please enter the total amount")]
         public double TotalAmount { get; set; }
 
 
