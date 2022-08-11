@@ -21,7 +21,7 @@ namespace OnlineHotelManagementAPI.Controllers
         }
 
         #region InsertPayment
-        [HttpPost("InsertPayment")/*, Authorize(Roles = "Receptionist, Manager, Owner")*/]
+        [HttpPost("InsertPayment")]
         public IActionResult InsertStaff(Payment payment)
         {
             return Ok(S_payment.InsertPayment(payment));
@@ -29,7 +29,7 @@ namespace OnlineHotelManagementAPI.Controllers
         #endregion
 
         #region UpdatePayment
-        [HttpPut("UpdatePayment")/*, Authorize(Roles = "Receptionist, Manager, Owner")*/]
+        [HttpPut("UpdatePayment")]
         public IActionResult UpdatePayment(Payment payment)
         {
             return Ok(S_payment.UpdatePayment(payment));
@@ -37,7 +37,7 @@ namespace OnlineHotelManagementAPI.Controllers
         #endregion
 
         #region DeletePayment
-        [HttpDelete("DeletePayment")/*, Authorize(Roles = "Receptionist, Manager, Owner")*/]
+        [HttpDelete("DeletePayment")]
         public IActionResult DeletePayment(int Id)
         {
             return Ok(S_payment.DeletePayment(Id));
@@ -45,7 +45,7 @@ namespace OnlineHotelManagementAPI.Controllers
         #endregion
 
         #region GetPaymentById
-        [HttpGet("GetPaymentById")/*, Authorize(Roles = "Manager, Receptionist, Owner")*/]
+        [HttpGet("GetPaymentById")]
         public IActionResult GetPaymentById(int id)
         {
             if (S_payment.GetPaymentById(id) == "200")
@@ -60,7 +60,7 @@ namespace OnlineHotelManagementAPI.Controllers
         #endregion
 
         #region GetAllPayment
-        [HttpGet("GetAllPayment")/*, Authorize(Roles = "Receptionist, Manager, Owner")*/]
+        [HttpGet("GetAllPayment")]
         public IActionResult GetAllPayment()
         {
             return Ok(S_payment.GetAllPayment());

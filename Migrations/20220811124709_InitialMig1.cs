@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace OnlineHotelManagementAPI.Migrations
 {
-    public partial class initialmig1 : Migration
+    public partial class InitialMig1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -33,7 +33,7 @@ namespace OnlineHotelManagementAPI.Migrations
                     GuestId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PhnNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     gender = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
@@ -48,7 +48,7 @@ namespace OnlineHotelManagementAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    InventoryName = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
+                    InventoryName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
                     Price = table.Column<double>(type: "float", nullable: false)
                 },
@@ -63,30 +63,13 @@ namespace OnlineHotelManagementAPI.Migrations
                 {
                     PaymentID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CardholderName = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    CardholderName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CardNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Payments", x => x.PaymentID);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Rates",
-                columns: table => new
-                {
-                    rate_id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    No_of_Days = table.Column<int>(type: "int", nullable: false),
-                    ExtensionPrice = table.Column<double>(type: "float", nullable: false),
-                    PerNightPrice = table.Column<double>(type: "float", nullable: false),
-                    TotalAmount = table.Column<double>(type: "float", nullable: false),
-                    roomId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Rates", x => x.rate_id);
                 });
 
             migrationBuilder.CreateTable(
@@ -100,8 +83,6 @@ namespace OnlineHotelManagementAPI.Migrations
                     checkin_date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     checkout_date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     no_of_rooms = table.Column<int>(type: "int", nullable: false),
-                    status = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    advance_payment = table.Column<double>(type: "float", nullable: false),
                     PhnNumber = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
@@ -131,9 +112,9 @@ namespace OnlineHotelManagementAPI.Migrations
                 {
                     StaffId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    StaffName = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
-                    NIC = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    StaffName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    NIC = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Salary = table.Column<double>(type: "float", nullable: false),
                     Age = table.Column<int>(type: "int", nullable: false),
                     Occupation = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -143,6 +124,33 @@ namespace OnlineHotelManagementAPI.Migrations
                 {
                     table.PrimaryKey("PK_Staffs", x => x.StaffId);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "Rates",
+                columns: table => new
+                {
+                    rate_id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    No_of_Days = table.Column<int>(type: "int", nullable: false),
+                    ExtensionPrice = table.Column<double>(type: "float", nullable: false),
+                    PerNightPrice = table.Column<double>(type: "float", nullable: false),
+                    TotalAmount = table.Column<double>(type: "float", nullable: false),
+                    room_id = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Rates", x => x.rate_id);
+                    table.ForeignKey(
+                        name: "FK_Rates_Rooms_room_id",
+                        column: x => x.room_id,
+                        principalTable: "Rooms",
+                        principalColumn: "room_id");
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Rates_room_id",
+                table: "Rates",
+                column: "room_id");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -166,10 +174,10 @@ namespace OnlineHotelManagementAPI.Migrations
                 name: "Reservations");
 
             migrationBuilder.DropTable(
-                name: "Rooms");
+                name: "Staffs");
 
             migrationBuilder.DropTable(
-                name: "Staffs");
+                name: "Rooms");
         }
     }
 }

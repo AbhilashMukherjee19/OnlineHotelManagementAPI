@@ -21,7 +21,7 @@ namespace OnlineHotelManagementAPI.Controllers
         }
 
         #region InsertGuest
-        [HttpPost("InsertGuest")/*, Authorize(Roles = "Manager, Receptionist, Owner")*/]
+        [HttpPost("InsertGuest")]
         public IActionResult AddGuest(Guest guest)
         {
             return Ok(_guest.AddGuest(guest));
@@ -29,7 +29,7 @@ namespace OnlineHotelManagementAPI.Controllers
         #endregion
 
         #region UpdateGuest
-        [HttpPut("UpdateGuest")/*, Authorize(Roles = "Manager, Receptionist, Owner")*/]
+        [HttpPut("UpdateGuest")]
         public IActionResult UpdateGuest(Guest guest)
         {
             return Ok(_guest.UpdateGuest(guest));
@@ -37,7 +37,7 @@ namespace OnlineHotelManagementAPI.Controllers
         #endregion
 
         #region DeleteGuest
-        [HttpDelete("DeleteGuest")/*, Authorize(Roles = "Manager, Receptionist, Owner")*/]
+        [HttpDelete("DeleteGuest")]
         public IActionResult RemoveGuest(int id)
         {
             return Ok(_guest.RemoveGuest(id));
@@ -45,7 +45,7 @@ namespace OnlineHotelManagementAPI.Controllers
         #endregion
 
         #region GetGuestById
-        [HttpGet("GetGuestById")/*, Authorize(Roles = "Manager, Receptionist, Owner")*/]
+        [HttpGet("GetGuestById")]
         public IActionResult GetGuestById(int id)
         {
             if(_guest.GetById(id) == "200")
@@ -60,7 +60,7 @@ namespace OnlineHotelManagementAPI.Controllers
         #endregion
 
         #region GetAllGuests
-        [HttpGet("GetAllGuests")/*, Authorize(Roles = "Manager, Receptionist, Owner")*/]
+        [HttpGet("GetAllGuests")]
         public IActionResult GetAllGuests()
         {
             return Ok(_guest.GetAll());

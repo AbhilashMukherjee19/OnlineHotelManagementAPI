@@ -12,6 +12,11 @@ namespace OnlineHotelManagementAPI.Repositories
         }
 
         #region DeleteReservation
+        /// <summary>
+        /// This method is to delete reservation details.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public string DeleteReservation(int id)
         {
             string stcode = string.Empty;
@@ -38,6 +43,10 @@ namespace OnlineHotelManagementAPI.Repositories
         #endregion
 
         #region GetAllReservation
+        /// <summary>
+        /// This method to read all reservation values.
+        /// </summary>
+        /// <returns></returns>
         public List<Reservation> GetAllReservation()
         {
             try
@@ -53,6 +62,11 @@ namespace OnlineHotelManagementAPI.Repositories
         #endregion
 
         #region GetReservationById
+        /// <summary>
+        /// This method is to get reservation values by specific id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public string GetReservationById(int Id)
         {
             Reservation reservation;
@@ -80,6 +94,11 @@ namespace OnlineHotelManagementAPI.Repositories
         #endregion
 
         #region InsertReservation 
+        /// <summary>
+        /// This method is to insert reservation details.
+        /// </summary>
+        /// <param name="reservation"></param>
+        /// <returns></returns>
         public string InsertReservation(Reservation reservation)
         {
             string stcode = string.Empty;
@@ -99,6 +118,11 @@ namespace OnlineHotelManagementAPI.Repositories
         #endregion
 
         #region UpdateReservation
+        /// <summary>
+        /// This method is to update reservation details.
+        /// </summary>
+        /// <param name="reservation"></param>
+        /// <returns></returns>
         public string UpdateReservation(Reservation reservation)
         {
             string stcode = string.Empty;

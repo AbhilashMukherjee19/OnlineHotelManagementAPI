@@ -9,6 +9,5 @@ namespace OnlineHotelManagementAPI.Repositories
         string InsertReservation(Reservation reservation);
         string UpdateReservation(Reservation reservation);
         string DeleteReservation(int reservation);
-        //void SaveInventory(Inventory inventory);
     }
 }

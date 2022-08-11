@@ -12,6 +12,10 @@ namespace OnlineHotelManagementAPI.Repositories
         }
 
         #region GetAllRate
+        /// <summary>
+        /// This method to read all rate values.
+        /// </summary>
+        /// <returns></returns>
         public List<Rate> GetAllRate()
         {
             try
@@ -27,6 +31,11 @@ namespace OnlineHotelManagementAPI.Repositories
         #endregion
 
         #region InsertRate
+        /// <summary>
+        /// This method is to insert rate details.
+        /// </summary>
+        /// <param name="rate"></param>
+        /// <returns></returns>
         public string InsertRate(Rate rate)
         {
             string stcode = string.Empty;
@@ -46,6 +55,11 @@ namespace OnlineHotelManagementAPI.Repositories
         #endregion
 
         #region UpdateRate
+        /// <summary>
+        /// This method is to update rate details.
+        /// </summary>
+        /// <param name="rate"></param>
+        /// <returns></returns>
         public string UpdateRate(Rate rate)
         {
             string stcode = string.Empty;
@@ -65,6 +79,11 @@ namespace OnlineHotelManagementAPI.Repositories
         #endregion
 
         #region GetRateById
+        /// <summary>
+        /// This method is to get rate values by specific id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public string GetRateById(int Id)
         {
             Rate rate;
@@ -92,6 +111,11 @@ namespace OnlineHotelManagementAPI.Repositories
         #endregion
 
         #region DeleteRate
+        /// <summary>
+        /// This method is to delete rate details.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public string DeleteRate(int id)
         {
             string stcode = string.Empty;

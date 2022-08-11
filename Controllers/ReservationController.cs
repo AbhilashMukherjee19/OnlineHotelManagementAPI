@@ -21,7 +21,7 @@ namespace OnlineHotelManagementAPI.Controllers
         }
 
         #region InsertReservation
-        [HttpPost("InsertReservation")/*, Authorize(Roles = "Receptionist, Manager, Owner")*/]
+        [HttpPost("InsertReservation")]
         public IActionResult InsertReservation(Reservation reservation)
         {
             return Ok(S_reservation.InsertReservation(reservation));
@@ -29,7 +29,7 @@ namespace OnlineHotelManagementAPI.Controllers
         #endregion
 
         #region UpdateReservation
-        [HttpPut("UpdateReservation")/*, Authorize(Roles = "Receptionist, Manager, Owner")*/]
+        [HttpPut("UpdateReservation")]
         public IActionResult UpdateReservation(Reservation reservation)
         {
             return Ok(S_reservation.UpdateReservation(reservation));
@@ -37,7 +37,7 @@ namespace OnlineHotelManagementAPI.Controllers
         #endregion
 
         #region DeleteReservation
-        [HttpDelete("DeleteReservation")/*, Authorize(Roles = "Receptionist, Manager, Owner")*/]
+        [HttpDelete("DeleteReservation")]
         public IActionResult DeleteReservation(int Id)
         {
             return Ok(S_reservation.DeleteReservation(Id));
@@ -45,7 +45,7 @@ namespace OnlineHotelManagementAPI.Controllers
         #endregion
 
         #region GetReservationById
-        [HttpGet("GetReservationById")/*, Authorize(Roles = "Receptionist, Manager, Owner")*/]
+        [HttpGet("GetReservationById")]
         public IActionResult GetReservationById(int Id)
         {
             if (S_reservation.GetReservationById(Id) == "200")
@@ -60,7 +60,7 @@ namespace OnlineHotelManagementAPI.Controllers
         #endregion
 
         #region GetAllReservations
-        [HttpGet("GetAllReservations")/*, Authorize(Roles = "Manager, Receptionist, Owner")*/]
+        [HttpGet("GetAllReservations")]
         public IActionResult GetAllReservation()
         {
             return Ok(S_reservation.GetAllReservation());

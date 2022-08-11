@@ -12,6 +12,11 @@ namespace OnlineHotelManagementAPI.Repositories
         }
 
         #region DeleteStaff
+        /// <summary>
+        /// This method is to delete staff details.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public string DeleteStaff(int Id)
         {
             string stcode = string.Empty;
@@ -38,6 +43,10 @@ namespace OnlineHotelManagementAPI.Repositories
         #endregion
 
         #region GetAllStaff
+        /// <summary>
+        /// This method to read all staff values.
+        /// </summary>
+        /// <returns></returns>
         public List<Staff> GetAllStaff()
         {
             try
@@ -53,6 +62,11 @@ namespace OnlineHotelManagementAPI.Repositories
         #endregion
 
         #region GetStaffById
+        /// <summary>
+        /// This method is to get staff values by specific id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public string GetStaffById(int id)
         {
             string stcode = string.Empty;
@@ -79,6 +93,11 @@ namespace OnlineHotelManagementAPI.Repositories
         #endregion
 
         #region InsertStaff
+        /// <summary>
+        /// This method is to insert staff details.
+        /// </summary>
+        /// <param name="staff"></param>
+        /// <returns></returns>
         public string InsertStaff(Staff staff)
         {
             string stcode = string.Empty;
@@ -99,6 +118,10 @@ namespace OnlineHotelManagementAPI.Repositories
         #endregion
 
         #region SaveStaff
+        /// <summary>
+        /// This method is to save staff details.
+        /// </summary>
+        /// <param name="staff"></param>
         public void SaveStaff(Staff staff)
         {
             _context.SaveChanges();
@@ -106,6 +129,11 @@ namespace OnlineHotelManagementAPI.Repositories
         #endregion
 
         #region UpdateStaff
+        /// <summary>
+        /// This method is to update staff details.
+        /// </summary>
+        /// <param name="staff"></param>
+        /// <returns></returns>
         public string UpdateStaff(Staff staff)
         {
             string stcode = string.Empty;

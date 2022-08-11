@@ -4,9 +4,7 @@ namespace OnlineHotelManagementAPI.Models
 {
     public class HotelContext : DbContext
     {
-        public HotelContext(DbContextOptions options) : base(options)
-        {
-        }
+        public HotelContext(DbContextOptions options) : base(options) {}
 
         public DbSet<Reservation> Reservations { get; set; }
         public DbSet<Guest> Guests { get; set; }

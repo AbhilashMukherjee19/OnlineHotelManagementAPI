@@ -9,7 +9,13 @@ namespace OnlineHotelManagementAPI.Repositories
         {
             _dbContext = context;
         }
+
         #region AddAdmin
+        /// <summary>
+        /// This method is to add admin.
+        /// </summary>
+        /// <param name="admin"></param>
+        /// <returns></returns>
         public string AddAdmin(Admin admin)
         {
             string stcode = string.Empty;
@@ -25,7 +31,6 @@ namespace OnlineHotelManagementAPI.Repositories
                 stcode = "400";
                 throw ex;
             }
-            //return stcode;
         }
         #endregion
     }

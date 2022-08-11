@@ -173,9 +173,6 @@ namespace OnlineHotelManagementAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("advance_payment")
-                        .HasColumnType("float");
-
                     b.Property<DateTime>("checkin_date")
                         .HasColumnType("datetime2");
 
@@ -190,10 +187,6 @@ namespace OnlineHotelManagementAPI.Migrations
 
                     b.Property<int>("no_of_rooms")
                         .HasColumnType("int");
-
-                    b.Property<string>("status")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

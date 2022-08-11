@@ -15,6 +15,10 @@ namespace OnlineHotelManagementAPI.Repositories
         }
 
         #region GetAllPayment
+        /// <summary>
+        /// This method to read all payment values.
+        /// </summary>
+        /// <returns></returns>
         public List<Payment> GetAllPayment()
         {
             try
@@ -30,6 +34,11 @@ namespace OnlineHotelManagementAPI.Repositories
         #endregion
 
         #region InsertPayment
+        /// <summary>
+        /// This method is to insert payment details.
+        /// </summary>
+        /// <param name="payment"></param>
+        /// <returns></returns>
         public string InsertPayment(Payment payment)
         {
             string stcode = string.Empty;
@@ -52,6 +61,10 @@ namespace OnlineHotelManagementAPI.Repositories
         #endregion
 
         #region SavePayment
+        /// <summary>
+        /// This method is to save payment details.
+        /// </summary>
+        /// <param name="payment"></param>
         public void SavePayment(Payment payment)
         {
             _context.SaveChanges();
@@ -59,6 +72,11 @@ namespace OnlineHotelManagementAPI.Repositories
         #endregion
 
         #region UpdatePayment
+        /// <summary>
+        /// This method is to update payment details.
+        /// </summary>
+        /// <param name="payment"></param>
+        /// <returns></returns>
         public string UpdatePayment(Payment payment)
         {
             string stcode = string.Empty;
@@ -78,6 +96,11 @@ namespace OnlineHotelManagementAPI.Repositories
         #endregion
 
         #region GetPaymentById
+        /// <summary>
+        /// This method is to get payment values by specific id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public string GetPaymentById(int Id)
         {
             Payment payment;
@@ -105,6 +128,11 @@ namespace OnlineHotelManagementAPI.Repositories
         #endregion
 
         #region DeletePayment
+        /// <summary>
+        /// This method is to delete payment details.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public string DeletePayment(int id)
         {
             string stcode = string.Empty;
@@ -131,6 +159,11 @@ namespace OnlineHotelManagementAPI.Repositories
         #endregion
 
         #region SendEmail
+        /// <summary>
+        /// This method is to send email to the registered email id.
+        /// </summary>
+        /// <param name="payment"></param>
+        /// <returns></returns>
         public async Task<Payment> SendEmail(Payment payment)
         {
             try

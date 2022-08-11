@@ -10,7 +10,12 @@ namespace OnlineHotelManagementAPI.Repositories
         {
             _dbContext = context;
         }
+
         #region GetAllRooms
+        /// <summary>
+        /// This method to read all room values.
+        /// </summary>
+        /// <returns></returns>
         public List<Room> GetAll()
         {
             try
@@ -25,6 +30,11 @@ namespace OnlineHotelManagementAPI.Repositories
         #endregion
 
         #region GetRoomById
+        /// <summary>
+        /// This method is to get room values by specific id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public string GetById(int id)
         {
             string stcode = string.Empty;
@@ -52,6 +62,11 @@ namespace OnlineHotelManagementAPI.Repositories
         #endregion
 
         #region AddRoom
+        /// <summary>
+        /// This method is to insert room details.
+        /// </summary>
+        /// <param name="rooom"></param>
+        /// <returns></returns>
         public string AddRoom(Room room)
         {
             string stcode = string.Empty;
@@ -70,6 +85,11 @@ namespace OnlineHotelManagementAPI.Repositories
         #endregion
 
         #region UpdateRoom
+        /// <summary>
+        /// This method is to update room details.
+        /// </summary>
+        /// <param name="room"></param>
+        /// <returns></returns>
         public string UpdateRoom(Room room)
         {
             string stcode = string.Empty;
@@ -90,6 +110,11 @@ namespace OnlineHotelManagementAPI.Repositories
         #endregion
 
         #region DeleteRoom
+        /// <summary>
+        /// This method is to delete room details.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public string RemoveRoom(int id)
         {
             string stcode = string.Empty;

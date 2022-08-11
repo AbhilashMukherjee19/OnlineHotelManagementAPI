@@ -12,8 +12,8 @@ using OnlineHotelManagementAPI.Models;
 namespace OnlineHotelManagementAPI.Migrations
 {
     [DbContext(typeof(HotelContext))]
-    [Migration("20220807152900_InitialMig3")]
-    partial class InitialMig3
+    [Migration("20220811124709_InitialMig1")]
+    partial class InitialMig1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -66,8 +66,7 @@ namespace OnlineHotelManagementAPI.Migrations
 
                     b.Property<string>("Address")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -96,8 +95,7 @@ namespace OnlineHotelManagementAPI.Migrations
 
                     b.Property<string>("InventoryName")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<double>("Price")
                         .HasColumnType("float");
@@ -124,8 +122,7 @@ namespace OnlineHotelManagementAPI.Migrations
 
                     b.Property<string>("CardholderName")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -156,12 +153,12 @@ namespace OnlineHotelManagementAPI.Migrations
                     b.Property<double>("TotalAmount")
                         .HasColumnType("float");
 
-                    b.Property<int?>("roomId")
+                    b.Property<int?>("room_id")
                         .HasColumnType("int");
 
                     b.HasKey("rate_id");
 
-                    b.HasIndex("roomId");
+                    b.HasIndex("room_id");
 
                     b.ToTable("Rates");
                 });
@@ -178,9 +175,6 @@ namespace OnlineHotelManagementAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("advance_payment")
-                        .HasColumnType("float");
-
                     b.Property<DateTime>("checkin_date")
                         .HasColumnType("datetime2");
 
@@ -195,10 +189,6 @@ namespace OnlineHotelManagementAPI.Migrations
 
                     b.Property<int>("no_of_rooms")
                         .HasColumnType("int");
-
-                    b.Property<string>("status")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -242,8 +232,7 @@ namespace OnlineHotelManagementAPI.Migrations
 
                     b.Property<string>("Address")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Age")
                         .HasColumnType("int");
@@ -254,8 +243,7 @@ namespace OnlineHotelManagementAPI.Migrations
 
                     b.Property<string>("NIC")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Occupation")
                         .IsRequired()
@@ -266,8 +254,7 @@ namespace OnlineHotelManagementAPI.Migrations
 
                     b.Property<string>("StaffName")
                         .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("StaffId");
 
@@ -278,7 +265,7 @@ namespace OnlineHotelManagementAPI.Migrations
                 {
                     b.HasOne("OnlineHotelManagementAPI.Models.Room", "Room")
                         .WithMany()
-                        .HasForeignKey("roomId");
+                        .HasForeignKey("room_id");
 
                     b.Navigation("Room");
                 });

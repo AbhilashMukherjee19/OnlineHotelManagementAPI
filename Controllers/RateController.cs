@@ -21,7 +21,7 @@ namespace OnlineHotelManagementAPI.Controllers
         }
 
         #region InsertRate
-        [HttpPost("InsertRate")/*, Authorize(Roles = "Receptionist, Manager, Owner")*/]
+        [HttpPost("InsertRate")]
         public IActionResult InsertRate(Rate rate)
         {
             return Ok(S_rate.InsertRate(rate));
@@ -29,7 +29,7 @@ namespace OnlineHotelManagementAPI.Controllers
         #endregion
 
         #region UpdateRate
-        [HttpPut("UpdateRate")/*, Authorize(Roles = "Receptionist, Manager, Owner")*/]
+        [HttpPut("UpdateRate")]
         public IActionResult UpdateRate(Rate rate)
         {
             return Ok(S_rate.UpdateRate(rate));
@@ -37,7 +37,7 @@ namespace OnlineHotelManagementAPI.Controllers
         #endregion
 
         #region DeleteRate
-        [HttpDelete("DeleteRate")/*, Authorize(Roles = "Receptionist, Manager, Owner")*/]
+        [HttpDelete("DeleteRate")]
         public IActionResult DeleteRate(int Id)
         {
             return Ok(S_rate.DeleteRate(Id));
@@ -45,7 +45,7 @@ namespace OnlineHotelManagementAPI.Controllers
         #endregion
 
         #region GetAllRate
-        [HttpGet("GetAllRate")/*, Authorize(Roles = "Receptionist, Manager, Owner")*/]
+        [HttpGet("GetAllRate")]
         public IActionResult GetAllRate()
         {
             return Ok(S_rate.GetAllRate());
@@ -53,7 +53,7 @@ namespace OnlineHotelManagementAPI.Controllers
         #endregion
 
         #region GetRateById
-        [HttpGet("GetRateById")/*, Authorize(Roles = "Manager, Receptionist, Owner")*/]
+        [HttpGet("GetRateById")]
         public IActionResult GetRateById(int id)
         {
             if (S_rate.GetRateById(id) == "200")

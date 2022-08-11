@@ -32,11 +32,6 @@ namespace OnlineHotelManagementAPI.Service
             return _IReservation.InsertReservation(reservation);
         }
 
-        //public void SaveIReservation(Reservation inventory)
-        //{
-        //    _IReservation.SaveReservation(inventory);
-        //}
-
         public string UpdateReservation(Reservation reservation)
         {
             return _IReservation.UpdateReservation(reservation);

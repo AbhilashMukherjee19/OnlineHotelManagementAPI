@@ -12,6 +12,10 @@ namespace OnlineHotelManagementAPI.Repositories
         }
 
         #region GetAllGuests
+        /// <summary>
+        /// This method to read all guest values.
+        /// </summary>
+        /// <returns></returns>
         public List<Guest> GetAll()
         {
             try
@@ -26,6 +30,11 @@ namespace OnlineHotelManagementAPI.Repositories
         #endregion
 
         #region GetGuestById
+        /// <summary>
+        /// This method is to get guest values by specific id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public string GetById(int id)
         {
             string stcode = string.Empty;
@@ -52,6 +61,11 @@ namespace OnlineHotelManagementAPI.Repositories
         #endregion
 
         #region AddGuest
+        /// <summary>
+        /// This method is to insert guest details.
+        /// </summary>
+        /// <param name="guest"></param>
+        /// <returns></returns>
         public string AddGuest(Guest guest)
         {
             string stcode = string.Empty;
@@ -70,6 +84,11 @@ namespace OnlineHotelManagementAPI.Repositories
         #endregion
 
         #region UpdateGuest
+        /// <summary>
+        /// This method is to update guest details.
+        /// </summary>
+        /// <param name="guest"></param>
+        /// <returns></returns>
         public string UpdateGuest(Guest guest)
         {
             string stcode = string.Empty;
@@ -89,6 +108,11 @@ namespace OnlineHotelManagementAPI.Repositories
         #endregion
 
         #region DeleteGuest
+        /// <summary>
+        /// This method is to delete guest details.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public string RemoveGuest(int id)
         {
             string stcode = string.Empty;
